@@ -131,7 +131,11 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/rrqq/TableRearrangement/ur_controller/build/gtest/cmake_install.cmake")
+  include("/home/rrqq/TableRearrangement/ur_controller/build/panda_moveit_config/cmake_install.cmake")
+  include("/home/rrqq/TableRearrangement/ur_controller/build/geometric_shapes/cmake_install.cmake")
+  include("/home/rrqq/TableRearrangement/ur_controller/build/moveit_msgs/cmake_install.cmake")
   include("/home/rrqq/TableRearrangement/ur_controller/build/ur_controller/cmake_install.cmake")
+  include("/home/rrqq/TableRearrangement/ur_controller/build/moveit_tutorials/cmake_install.cmake")
 
 endif()
 

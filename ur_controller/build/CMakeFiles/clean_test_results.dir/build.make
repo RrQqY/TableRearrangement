@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/rrqq/TableRearrangement/ur_controller/build
 include CMakeFiles/clean_test_results.dir/progress.make
 
 CMakeFiles/clean_test_results:
-	/home/rrqq/anaconda3/bin/python3 /opt/ros/noetic/share/catkin/cmake/test/remove_test_results.py /home/rrqq/TableRearrangement/ur_controller/build/test_results
+	/usr/bin/python3 /opt/ros/noetic/share/catkin/cmake/test/remove_test_results.py /home/rrqq/TableRearrangement/ur_controller/build/test_results
 
 clean_test_results: CMakeFiles/clean_test_results
 clean_test_results: CMakeFiles/clean_test_results.dir/build.make

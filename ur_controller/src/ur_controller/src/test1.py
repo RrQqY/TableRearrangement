@@ -4,14 +4,14 @@ import numpy as np
 import rospy
 import actionlib
 from sensor_msgs.msg import JointState
-# import sys
-# import copy
-# import moveit_commander
-# import moveit_msgs.msg
-# import geometry_msgs.msg
-# from math import pi
-# from std_msgs.msg import String
-# from moveit_commander.conversions import pose_to_list
+import sys
+import copy
+import moveit_commander
+import moveit_msgs.msg
+import geometry_msgs.msg
+from math import pi
+from std_msgs.msg import String
+from moveit_commander.conversions import pose_to_list
  
 JOINT_NAMES = ['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint',
                'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']
