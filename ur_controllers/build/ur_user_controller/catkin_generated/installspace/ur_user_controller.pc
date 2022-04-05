@@ -1,0 +1,8 @@
+prefix=/home/rrqq/TableRearrangement/ur_controllers/install
+
+Name: ur_user_controller
+Description: Description of ur_user_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

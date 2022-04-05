@@ -1,0 +1,2 @@
+ur_user_controller
+-DCATKIN_DEVEL_PREFIX=/home/rrqq/TableRearrangement/ur_controllers/devel -DCMAKE_INSTALL_PREFIX=/home/rrqq/TableRearrangement/ur_controllers/install -G Unix Makefiles
