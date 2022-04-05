@@ -1,7 +1,0 @@
-geometric_shapes
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/geometric_shapes/cmake.lock /home/rrqq/TableRearrangement/ur_controller/devel/./cmake.lock
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/geometric_shapes/lib/libgeometric_shapes.so /home/rrqq/TableRearrangement/ur_controller/devel/lib/libgeometric_shapes.so
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/geometric_shapes/lib/libgeometric_shapes.so.0.7.3 /home/rrqq/TableRearrangement/ur_controller/devel/lib/libgeometric_shapes.so.0.7.3
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/geometric_shapes/lib/pkgconfig/geometric_shapes.pc /home/rrqq/TableRearrangement/ur_controller/devel/lib/pkgconfig/geometric_shapes.pc
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/geometric_shapes/share/geometric_shapes/cmake/geometric_shapesConfig.cmake /home/rrqq/TableRearrangement/ur_controller/devel/share/geometric_shapes/cmake/geometric_shapesConfig.cmake
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/geometric_shapes/share/geometric_shapes/cmake/geometric_shapesConfig-version.cmake /home/rrqq/TableRearrangement/ur_controller/devel/share/geometric_shapes/cmake/geometric_shapesConfig-version.cmake

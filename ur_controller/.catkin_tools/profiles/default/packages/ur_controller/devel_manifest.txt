@@ -1,5 +1,0 @@
-ur_controller
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/ur_controller/cmake.lock /home/rrqq/TableRearrangement/ur_controller/devel/./cmake.lock
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/ur_controller/lib/pkgconfig/ur_controller.pc /home/rrqq/TableRearrangement/ur_controller/devel/lib/pkgconfig/ur_controller.pc
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/ur_controller/share/ur_controller/cmake/ur_controllerConfig.cmake /home/rrqq/TableRearrangement/ur_controller/devel/share/ur_controller/cmake/ur_controllerConfig.cmake
-/home/rrqq/TableRearrangement/ur_controller/devel/.private/ur_controller/share/ur_controller/cmake/ur_controllerConfig-version.cmake /home/rrqq/TableRearrangement/ur_controller/devel/share/ur_controller/cmake/ur_controllerConfig-version.cmake

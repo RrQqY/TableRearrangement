@@ -1,8 +1,0 @@
-prefix=/home/rrqq/TableRearrangement/ur_controller/devel
-
-Name: ur_controller
-Description: Description of ur_controller
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
