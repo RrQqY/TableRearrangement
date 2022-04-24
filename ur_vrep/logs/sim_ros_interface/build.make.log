@@ -1,0 +1,54 @@
+[  4%] [34m[1mGenerating generated/adv.cpp[0m
+[  9%] [34m[1mGenerating generated/pub.cpp[0m
+[ 14%] [34m[1mGenerating generated/ros_msg_io.cpp[0m
+[ 19%] [34m[1mGenerating generated/ros_msg_io.h[0m
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/SensorLevels
+WARNING: bad msg: driver_base/SensorLevels
+WARNING: bad msg: driver_base/SensorLevels
+WARNING: bad msg: driver_base/SensorLevels
+[ 23%] [34m[1mGenerating generated/ros_srv_io.cpp[0m
+[ 28%] [34m[1mGenerating generated/ros_srv_io.h[0m
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/SensorLevels
+WARNING: bad msg: driver_base/SensorLevels
+[ 33%] [34m[1mGenerating generated/srvcall.cpp[0m
+[ 38%] [34m[1mGenerating generated/srvcli.cpp[0m
+[ 42%] [34m[1mGenerating generated/srvsrv.cpp[0m
+[ 47%] [34m[1mGenerating generated/sub.cpp[0m
+WARNING: bad msg: driver_base/ConfigString
+WARNING: bad msg: driver_base/ConfigValue
+WARNING: bad msg: driver_base/SensorLevels
+[ 47%] Built target generate_ros_code
+[ 52%] [34m[1mGenerating generated/stubs.cpp, generated/stubs.h, generated/lua_calltips.cpp[0m
+/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/generate.py --xml-file /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/meta/callbacks.xml --lua-file /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/simExtROSInterface.lua --gen-all /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py -p xml_file=/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/meta/callbacks.xml -i /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/cpp/stubs.cpp -o /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/stubs.cpp -P /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py -p xml_file=/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/meta/callbacks.xml -i /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/cpp/stubs.h -o /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/stubs.h -P /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py -p xml_file=/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/meta/callbacks.xml -i /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/cpp/stubsPlusPlus.cpp -o /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/stubsPlusPlus.cpp -P /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/lua_to_xml.py /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/simExtROSInterface.lua /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/lua.xml
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/merge_xml.py /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/meta/callbacks.xml /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/lua.xml /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/reference.xml
+xsltproc -o /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/reference.html /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/xsl/reference.xsl /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/reference.xml
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/generate_lua_calltips.py RosInterface ROS /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/simExtROSInterface.lua /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/lua_calltips.cpp
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/generate_notepadplusplus_xml.py /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/reference.xml /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/np++.xml
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/generate_notepadplusplus_txt.py /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/reference.xml /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/np++.txt
+/home/rrqq/anaconda3/bin/python3.9 /home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/generate_deprecated_txt.py /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/meta/callbacks.xml /home/rrqq/TableRearrangement/ur_vrep/build/sim_ros_interface/generated/deprecated_mapping.txt
+[35m[1mScanning dependencies of target simExtROSInterface[0m
+[ 61%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/src/ros_msg_builtin_io.cpp.o[0m
+[ 61%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/src/sim_ros_interface.cpp.o[0m
+[ 71%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simPlusPlus/Plugin.cpp.o[0m
+[ 71%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/common/simLib.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/generated/stubs.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/generated/ros_msg_io.cpp.o[0m
+[ 85%] [32mBuilding CXX object CMakeFiles/simExtROSInterface.dir/generated/ros_srv_io.cpp.o[0m
+[ 90%] [32m[1mLinking CXX shared library /home/rrqq/TableRearrangement/ur_vrep/devel/.private/sim_ros_interface/lib/libsimExtROSInterface.so[0m
+[100%] Built target simExtROSInterface

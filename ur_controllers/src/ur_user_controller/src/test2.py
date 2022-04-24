@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # coding:utf-8
 
 import sys
@@ -45,7 +45,7 @@ class MoveGroupPythonIntefaceTutorial(object):
                     anonymous=True)
 
     # 创建一个RobotCommander的对象。RobotCommander是针对整个机器人的控制
-    robot = moveit_commander.RobotCommander()
+    # robot = moveit_commander.RobotCommander()
 
     # 创建一个PlanningSceneInterface的对象。PlanningSceneInterface是用于和机器人环境的交互
     scene = moveit_commander.PlanningSceneInterface()

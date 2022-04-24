@@ -1,0 +1,63 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_19812/fast && /usr/bin/make  -f CMakeFiles/cmTC_19812.dir/build.make CMakeFiles/cmTC_19812.dir/build
+make[1]: 进入目录“/home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_19812.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_19812.dir/src.c.o   -c /home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_19812
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_19812.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_19812.dir/src.c.o  -o cmTC_19812 
+CMakeFiles/cmTC_19812.dir/src.c.o：在函数‘main’中：
+src.c:(.text+0x3e)：对‘pthread_create’未定义的引用
+src.c:(.text+0x4a)：对‘pthread_detach’未定义的引用
+src.c:(.text+0x5b)：对‘pthread_join’未定义的引用
+src.c:(.text+0x6f)：对‘pthread_atfork’未定义的引用
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_19812.dir/build.make:89: recipe for target 'cmTC_19812' failed
+make[1]: *** [cmTC_19812] Error 1
+make[1]: 离开目录“/home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp”
+Makefile:124: recipe for target 'cmTC_19812/fast' failed
+make: *** [cmTC_19812/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ad09c/fast && /usr/bin/make  -f CMakeFiles/cmTC_ad09c.dir/build.make CMakeFiles/cmTC_ad09c.dir/build
+make[1]: 进入目录“/home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_ad09c.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ad09c.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_ad09c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad09c.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_ad09c.dir/CheckFunctionExists.c.o  -o cmTC_ad09c  -lpthreads 
+/usr/bin/ld: 找不到 -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_ad09c.dir/build.make:89: recipe for target 'cmTC_ad09c' failed
+make[1]: *** [cmTC_ad09c] Error 1
+make[1]: 离开目录“/home/rrqq/TableRearrangement/ur_vrep/build/catkin_tools_prebuild/CMakeFiles/CMakeTmp”
+Makefile:124: recipe for target 'cmTC_ad09c/fast' failed
+make: *** [cmTC_ad09c/fast] Error 2
+
+
+

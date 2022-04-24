@@ -1,0 +1,58 @@
+[35m[1mScanning dependencies of target generate_ros_code[0m
+[  9%] [34m[1mGenerating generated/ros_msg_io.h[0m
+[  9%] [34m[1mGenerating generated/pub.cpp[0m
+[ 19%] [34m[1mGenerating generated/ros_msg_io.cpp[0m
+[ 19%] [34m[1mGenerating generated/adv.cpp[0m
+Traceback (most recent call last):
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 212, in <module>
+    f.write(pycpp.get_output())
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 136, in get_output
+    exec(self.get_python_code(b, spool_fn='pycpp.output'), locals())
+  File "<string>", line 2, in <module>
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/tools/parse_messages_and_services.py", line 4, in <module>
+    import rospkg
+ModuleNotFoundError: No module named 'rospkg'
+Traceback (most recent call last):
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 212, in <module>
+    f.write(pycpp.get_output())
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 136, in get_output
+    exec(self.get_python_code(b, spool_fn='pycpp.output'), locals())
+  File "<string>", line 2, in <module>
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/tools/parse_messages_and_services.py", line 4, in <module>
+    import rospkg
+ModuleNotFoundError: No module named 'rospkg'
+CMakeFiles/generate_ros_code.dir/build.make:80: recipe for target 'generated/pub.cpp' failed
+make[2]: *** [generated/pub.cpp] Error 1
+make[2]: *** 正在删除文件“generated/pub.cpp”
+make[2]: *** 正在等待未完成的任务....
+CMakeFiles/generate_ros_code.dir/build.make:74: recipe for target 'generated/adv.cpp' failed
+make[2]: *** [generated/adv.cpp] Error 1
+make[2]: *** 正在删除文件“generated/adv.cpp”
+Traceback (most recent call last):
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 212, in <module>
+    f.write(pycpp.get_output())
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 136, in get_output
+    exec(self.get_python_code(b, spool_fn='pycpp.output'), locals())
+  File "<string>", line 8, in <module>
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/tools/parse_messages_and_services.py", line 4, in <module>
+    import rospkg
+ModuleNotFoundError: No module named 'rospkg'
+CMakeFiles/generate_ros_code.dir/build.make:92: recipe for target 'generated/ros_msg_io.h' failed
+make[2]: *** [generated/ros_msg_io.h] Error 1
+make[2]: *** 正在删除文件“generated/ros_msg_io.h”
+Traceback (most recent call last):
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 212, in <module>
+    f.write(pycpp.get_output())
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/CoppeliaSim_Edu/programming/libPlugin/simStubsGen/external/pycpp/pycpp.py", line 136, in get_output
+    exec(self.get_python_code(b, spool_fn='pycpp.output'), locals())
+  File "<string>", line 7, in <module>
+  File "/home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/tools/parse_messages_and_services.py", line 4, in <module>
+    import rospkg
+ModuleNotFoundError: No module named 'rospkg'
+CMakeFiles/generate_ros_code.dir/build.make:86: recipe for target 'generated/ros_msg_io.cpp' failed
+make[2]: *** [generated/ros_msg_io.cpp] Error 1
+make[2]: *** 正在删除文件“generated/ros_msg_io.cpp”
+CMakeFiles/Makefile2:228: recipe for target 'CMakeFiles/generate_ros_code.dir/all' failed
+make[1]: *** [CMakeFiles/generate_ros_code.dir/all] Error 2
+Makefile:143: recipe for target 'all' failed
+make: *** [all] Error 2
