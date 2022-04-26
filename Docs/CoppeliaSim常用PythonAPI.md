@@ -1,4 +1,4 @@
-# CoppeliaSim Python 常用 API
+## CoppeliaSim Python 常用 API
 
 ### simxGetJointPosition
 
@@ -222,3 +222,43 @@ number returnCode=simxSetObjectOrientation(number clientID,number objectHandle,n
   - operaMode：远程API函数操作模式，此函数的推荐操作模式是 simx_opmode_blocking  
 - 返回值：
   - returnCode：远程API函数返回码
+
+
+
+## CoppeliaSim 相关网站
+
+- CoppeliaSim Edu V4.1.0 + Ubuntu 16.04 + ROS Kinetic环境搭建与基础测试
+
+  https://www.freesion.com/article/81111354822/
+
+- Vrep与Python实现联合控制的通讯问题
+
+  https://wenku.baidu.com/view/5f87e52ff48a6529647d27284b73f242336c31f1.html
+
+- Coppeliasim与python的联动——The B0-based remote API
+
+  https://blog.csdn.net/qq_42286607/article/details/116862594
+
+- CoppeliaSim(原V-REP)新手上路
+
+  https://blog.csdn.net/qq_37051669/article/details/115324851
+
+- 官网[Remote API](https://www.coppeliarobotics.com/helpFiles/en/remoteApiOverview.htm) functions (Python)
+
+  https://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm
+
+- js image 获取rgb_VREP 获取 RGB / Depth 图（Python API）
+
+  https://blog.csdn.net/weixin_39572409/article/details/110745852
+
+- 使用Python对UR5进行轨迹规划
+
+  https://www.guyuehome.com/35685
+
+- 保姆级教学——虚拟机器人平台vrep(coppeliaSim)的机器人平台搭建
+
+  https://blog.csdn.net/qq_39243015/article/details/106247956?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_paycolumn_v3&utm_relevant_index=1
+
+- 用UR5进行识别、抓取和码垛
+
+  https://blog.csdn.net/uuuuur/article/details/108028900
