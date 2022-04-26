@@ -19,7 +19,7 @@
 
 <h1>Vision Plugin - Special Sensors</h1>
 
-<p>The <a href="https://github.com/CoppeliaRobotics/simExtVision" target="_blank">vision plugin</a> hosts, among others, functions to handle a range of special type of sensors:</p>
+<p>The <a href="https://github.com/CoppeliaRobotics/simExtVision">vision plugin</a> hosts, among others, functions to handle a range of special type of sensors:</p>
 
 
 <h3 class=subsectionBarTab><a name="simVision.createVelodyneHDL64E" id="simVision.createVelodyneHDL64E"></a>simVision.createVelodyneHDL64E</h3>
@@ -59,7 +59,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div><strong>handle</strong>: the created Velodyne HDL64E handle.</div></td> 
+<div><strong>handle</strong>: -1 in case of an error. Otherwise the created Velodyne HDL64E handle.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -105,7 +105,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div><strong>handle</strong>: the created Velodyne VPL16 handle.</div></td> 
+<div><strong>handle</strong>: -1 in case of an error. Otherwise the created Velodyne VPL16 handle.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -127,7 +127,7 @@ Deletes a Velodyne HDL64E handle previously created with <a href="#simVision.cre
 <td class=apiTableLeftLSyn>
 Lua synopsis
 </td> 
-<td class=apiTableRightLSyn>simVision.destroyVelodyneHDL64E(number velodyneHandle)</td> 
+<td class=apiTableRightLSyn>number result=simVision.destroyVelodyneHDL64E(number velodyneHandle)</td> 
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
@@ -140,7 +140,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div>none</div></td> 
+<div><strong>result</strong>: -1 in case of an error.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -162,7 +162,7 @@ Deletes a Velodyne VPL16 handle previously created with <a href="#simVision.crea
 <td class=apiTableLeftLSyn>
 Lua synopsis
 </td> 
-<td class=apiTableRightLSyn>simVision.destroyVelodyneVPL16(number velodyneHandle)</td> 
+<td class=apiTableRightLSyn>number result=simVision.destroyVelodyneVPL16(number velodyneHandle)</td> 
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
@@ -175,7 +175,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div>none</div></td> 
+<div><strong>result</strong>: -1 in case of an error.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -197,7 +197,7 @@ Allows to generate an anaglyph stereo image from two individual vision sensors (
 <td class=apiTableLeftLSyn>
 Lua synopsis
 </td> 
-<td class=apiTableRightLSyn>simVision.handleAnaglyphStereo(number rgbVisionSensorHandle,table_2 handlesOfTwoVisionSensors,table_6 leftAndRightColors=nil)</td> 
+<td class=apiTableRightLSyn>number result=simVision.handleAnaglyphStereo(number rgbVisionSensorHandle,table_2 handlesOfTwoVisionSensors,table_6 leftAndRightColors=nil)</td> 
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
@@ -212,7 +212,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div>none</div></td> 
+<div><strong>result</strong>: -1 in case of an error.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -234,7 +234,7 @@ Allows to generate an RGB and/or depth image that covers all directions, i.e. sp
 <td class=apiTableLeftLSyn>
 Lua synopsis
 </td> 
-<td class=apiTableRightLSyn>simVision.handleSpherical(number rgbVisionSensorHandle,table_6 handlesOfSixVisionSensors,number horizontalAngle,number verticalAngle,number depthVisionSensorHandle=-1)</td> 
+<td class=apiTableRightLSyn>number result=simVision.handleSpherical(number rgbVisionSensorHandle,table_6 handlesOfSixVisionSensors,number horizontalAngle,number verticalAngle,number depthVisionSensorHandle=-1)</td> 
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
@@ -251,7 +251,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div>none</div></td> 
+<div><strong>result</strong>: -1 in case of an error.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -278,7 +278,7 @@ Lua synopsis
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
 <td class=apiTableRightLParam>
-<div><strong>velodyneHandle</strong>: a handle previously returned by <a href="#simVision.createVelodyneHDL64E">simVision.createVelodyneHDL64E</a>. Can be combined with sim.handleflag_abscoords to retrieve points relative to the absolute reference frame, instead of the reference frame of the sensor. Can also be combined with sim.handleflag_codedstring, in order to retrieve packed data (faster).</div>
+<div><strong>velodyneHandle</strong>: a handle previously returned by <a href="#simVision.createVelodyneHDL64E">simVision.createVelodyneHDL64E</a>.</div>
 <div><strong>dt</strong>: the time duration since last call to this function. Typically the simulation time step.</div>
 </td> 
 </tr> 
@@ -287,7 +287,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div><strong>points</strong>: a table containing the detected points, or a coded string.</div></td> 
+<div><strong>points</strong>: a table containing the detected points, relative to the first vision sensor.</div></td> 
 </tr> 
 </table> 
 <br>
@@ -314,7 +314,7 @@ Lua synopsis
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
 <td class=apiTableRightLParam>
-<div><strong>velodyneHandle</strong>: a handle previously returned by <a href="#simVision.createVelodyneVPL16">simVision.createVelodyneVPL16</a>. Can be combined with sim.handleflag_abscoords to retrieve points relative to the absolute reference frame, instead of the reference frame of the sensor. Can also be combined with sim.handleflag_codedstring, in order to retrieve packed data (faster).</div>
+<div><strong>velodyneHandle</strong>: a handle previously returned by <a href="#simVision.createVelodyneVPL16">simVision.createVelodyneVPL16</a>.</div>
 <div><strong>dt</strong>: the time duration since last call to this function. Typically the simulation time step.</div>
 </td> 
 </tr> 
@@ -323,7 +323,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div><strong>points</strong>: a table containing the detected points, or a coded string.</div></td> 
+<div><strong>points</strong>: a table containing the detected points, relative to the first vision sensor.</div></td> 
 </tr> 
 </table> 
 <br>

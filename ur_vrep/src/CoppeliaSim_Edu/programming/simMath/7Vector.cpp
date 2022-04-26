@@ -71,7 +71,7 @@ void C7Vector::set(const C4X4Matrix& m)
     (*this)=m.getTransformation();
 }
 
-C3Vector C7Vector::getAxis(size_t index) const
+C3Vector C7Vector::getAxis(int index) const
 {
     return(Q.getAxis(index));
 }
@@ -89,16 +89,16 @@ C4X4Matrix C7Vector::getMatrix() const
 void C7Vector::copyTo(simMathReal m[4][4]) const
 { // Temporary routine. Remove later!
     C4X4Matrix tmp(getMatrix());
-    for (size_t i=0;i<3;i++)
+    for (int i=0;i<3;i++)
     {
-        for (size_t j=0;j<3;j++)
+        for (int j=0;j<3;j++)
             m[i][j]=tmp.M(i,j);
         m[i][3]=tmp.X(i);
     }
-    m[3][0]=simZero;
-    m[3][1]=simZero;
-    m[3][2]=simZero;
-    m[3][3]=simOne;
+    m[3][0]=0.0f;
+    m[3][1]=0.0f;
+    m[3][2]=0.0f;
+    m[3][3]=1.0f;
 }
 
 C7Vector& C7Vector::operator= (const C7Vector& v)
@@ -143,7 +143,7 @@ C7Vector C7Vector::getInverse() const
 {
     C7Vector retV;
     retV.Q=Q.getInverse();
-    retV.X=(retV.Q*X)*-simOne;
+    retV.X=(retV.Q*X)*-1.0f;
     return(retV);
 }
 
@@ -153,4 +153,4 @@ void C7Vector::buildInterpolation(const C7Vector& fromThis,const C7Vector& toTha
     X.buildInterpolation(fromThis.X,toThat.X,t);
 }
 
-const C7Vector C7Vector::identityTransformation(C4Vector(simOne,simZero,simZero,simZero),C3Vector(simZero,simZero,simZero));
+const C7Vector C7Vector::identityTransformation(C4Vector(1.0f,0.0f,0.0f,0.0f),C3Vector(0.0f,0.0f,0.0f));

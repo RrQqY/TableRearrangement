@@ -16,11 +16,9 @@ PARAMETERS=( ${@} )
 
 FILE_PATTERN1='*ttt'
 FILE_PATTERN2='*ttm'
-FILE_PATTERN3='*simscene.xml'
-FILE_PATTERN4='*simmodel.xml'
 for i in `seq 0 $(( ${#PARAMETERS[@]} -1 ))`
 do
-  if [ -f "${PARAMETERS[$i]}" ] && ( [[ "${PARAMETERS[$i]}" == $FILE_PATTERN1 ]] || [[ "${PARAMETERS[$i]}" == $FILE_PATTERN2 ]] || [[ "${PARAMETERS[$i]}" == $FILE_PATTERN3 ]] || [[ "${PARAMETERS[$i]}" == $FILE_PATTERN4 ]] )
+  if [ -f "${PARAMETERS[$i]}" ] && ( [[ "${PARAMETERS[$i]}" == $FILE_PATTERN1 ]] || [[ "${PARAMETERS[$i]}" == $FILE_PATTERN2 ]] )
   then
     if [ -f "$PWD/${PARAMETERS[$i]}" ]
     then
@@ -29,7 +27,7 @@ do
   fi
 done
 
-LD_LIBRARY_PATH=$dirname:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$dirname
 export LD_LIBRARY_PATH
 
 "$dirname/$appname" "${PARAMETERS[@]}"

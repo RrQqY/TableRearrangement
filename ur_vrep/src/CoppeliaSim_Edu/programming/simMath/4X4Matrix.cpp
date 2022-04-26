@@ -30,9 +30,9 @@ C4X4Matrix::C4X4Matrix(const CMatrix& m)
 
 C4X4Matrix::C4X4Matrix(const simMathReal m[4][4])
 {
-    for (size_t i=0;i<3;i++)
+    for (int i=0;i<3;i++)
     {
-        for (size_t j=0;j<3;j++)
+        for (int j=0;j<3;j++)
             M(i,j)=m[i][j];
         X(i)=m[i][3];
     }

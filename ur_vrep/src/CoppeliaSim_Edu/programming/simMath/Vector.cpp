@@ -4,7 +4,7 @@ CVector::CVector()
 {
 }
 
-CVector::CVector(size_t nElements)
+CVector::CVector(int nElements)
 {
     data=new simMathReal[nElements];
     elements=nElements;
@@ -52,35 +52,35 @@ CVector::~CVector()
 
 CVector& CVector::operator= (const C3Vector& v)
 {
-    for (size_t i=0;i<3;i++)
+    for (int i=0;i<3;i++)
         data[i]=v(i);
     return(*this);
 }
 
 CVector& CVector::operator= (const C4Vector& v)
 {
-    for (size_t i=0;i<4;i++)
+    for (int i=0;i<4;i++)
         data[i]=v(i);
     return(*this);
 }
 
 CVector& CVector::operator= (const C6Vector& v)
 {
-    for (size_t i=0;i<6;i++)
+    for (int i=0;i<6;i++)
         data[i]=v(i);
     return(*this);
 }
 
 CVector& CVector::operator= (const C7Vector& v)
 {
-    for (size_t i=0;i<7;i++)
+    for (int i=0;i<7;i++)
         data[i]=v(i);
     return(*this);
 }
 
 CVector& CVector::operator= (const CVector& v)
 {
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         data[i]=v.data[i];
     return(*this);
 }
@@ -88,7 +88,7 @@ CVector& CVector::operator= (const CVector& v)
 CVector CVector::operator* (simMathReal d) const
 {
     CVector retV(elements);
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         retV.data[i]=data[i]*d;
     return(retV);
 }
@@ -96,7 +96,7 @@ CVector CVector::operator* (simMathReal d) const
 CVector CVector::operator/ (simMathReal d) const
 {
     CVector retV(elements);
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         retV.data[i]=data[i]/d;
     return(retV);
 }
@@ -104,7 +104,7 @@ CVector CVector::operator/ (simMathReal d) const
 CVector CVector::operator+ (const CVector& v) const
 {
     CVector retV(elements);
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         retV.data[i]=data[i]+v.data[i];
     return(retV);
 }
@@ -112,71 +112,71 @@ CVector CVector::operator+ (const CVector& v) const
 CVector CVector::operator- (const CVector& v) const
 {
     CVector retV(elements);
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         retV.data[i]=data[i]-v.data[i];
     return(retV);
 }
     
 simMathReal CVector::operator* (const C3Vector& v) const
 {
-    simMathReal retVal=simZero;
-    for (size_t i=0;i<3;i++)
+    simMathReal retVal=0.0f;
+    for (int i=0;i<3;i++)
         retVal+=(data[i]*v(i));
     return(retVal);
 }
 
 simMathReal CVector::operator* (const C4Vector& v) const
 {
-    simMathReal retVal=simZero;
-    for (size_t i=0;i<4;i++)
+    simMathReal retVal=0.0f;
+    for (int i=0;i<4;i++)
         retVal+=(data[i]*v(i));
     return(retVal);
 }
 
 simMathReal CVector::operator* (const C6Vector& v) const
 {
-    simMathReal retVal=simZero;
-    for (size_t i=0;i<6;i++)
+    simMathReal retVal=0.0f;
+    for (int i=0;i<6;i++)
         retVal+=(data[i]*v(i));
     return(retVal);
 }
 
 simMathReal CVector::operator* (const C7Vector& v) const
 {
-    simMathReal retVal=simZero;
-    for (size_t i=0;i<7;i++)
+    simMathReal retVal=0.0f;
+    for (int i=0;i<7;i++)
         retVal+=(data[i]*v(i));
     return(retVal);
 }
 
 simMathReal CVector::operator* (const CVector& v) const
 {
-    simMathReal retVal=simZero;
-    for (size_t i=0;i<elements;i++)
+    simMathReal retVal=0.0f;
+    for (int i=0;i<elements;i++)
         retVal+=(data[i]*v.data[i]);
     return(retVal);
 }
 
 void CVector::operator*= (simMathReal d)
 {
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         data[i]*=d;
 }
 
 void CVector::operator/= (simMathReal d)
 {
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         data[i]/=d;
 }
 
 void CVector::operator+= (const CVector& v) 
 {
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         data[i]+=v.data[i];
 }
 
 void CVector::operator-= (const CVector& v) 
 {
-    for (size_t i=0;i<elements;i++)
+    for (int i=0;i<elements;i++)
         data[i]-=v.data[i];
 }

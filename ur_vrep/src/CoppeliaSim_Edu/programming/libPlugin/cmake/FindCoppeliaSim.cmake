@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 2.8.12)
 include(CMakeParseArguments)
 
 function(COPPELIASIM_FIND_ERROR MESSAGE)
@@ -118,8 +118,6 @@ int main() {
             if(NOT CoppeliaSim_FIND_QUIETLY)
                 message(STATUS "CoppeliaSim headers version ${COPPELIASIM_VERSION_STR}")
             endif()
-            math(EXPR CoppeliaSim_FIND_VERSION_NB "1000000 * ${CoppeliaSim_FIND_VERSION_MAJOR} + 10000 * ${CoppeliaSim_FIND_VERSION_MINOR} + 100 * ${CoppeliaSim_FIND_VERSION_PATCH} + ${CoppeliaSim_FIND_VERSION_TWEAK}")
-            add_compile_definitions(SIM_REQUIRED_PROGRAM_VERSION_NB=${CoppeliaSim_FIND_VERSION_NB})
             if(${COPPELIASIM_VERSION} VERSION_LESS ${CoppeliaSim_FIND_VERSION})
                 coppeliasim_find_error("Found CoppeliaSim version ${COPPELIASIM_VERSION} but ${CoppeliaSim_FIND_VERSION} required.")
                 return()
@@ -138,19 +136,13 @@ if(WIN32)
     add_definitions(-DWIN_SIM)
     add_definitions(-DNOMINMAX)
     add_definitions(-Dstrcasecmp=_stricmp)
-    if((MSVC) AND (MSVC_VERSION GREATER_EQUAL 1914))
-        add_compile_options("/Zc:__cplusplus")
-    endif()
     set(COPPELIASIM_LIBRARIES shlwapi)
-    set(COPPELIASIM_PLUGINS_DIR ${COPPELIASIM_ROOT_DIR})
 elseif(UNIX AND NOT APPLE)
     add_definitions(-DLIN_SIM)
     set(COPPELIASIM_LIBRARIES "")
-    set(COPPELIASIM_PLUGINS_DIR ${COPPELIASIM_ROOT_DIR})
 elseif(UNIX AND APPLE)
     add_definitions(-DMAC_SIM)
     set(COPPELIASIM_LIBRARIES "")
-    set(COPPELIASIM_PLUGINS_DIR ${COPPELIASIM_ROOT_DIR}/coppeliaSim.app/Contents/MacOS/)
 endif()
 
 include_directories(${LIBPLUGIN_DIR})
@@ -160,14 +152,13 @@ function(COPPELIASIM_GENERATE_STUBS GENERATED_OUTPUT_DIR)
     if(NOT CoppeliaSim_FIND_QUIETLY)
         message(STATUS "Adding simStubsGen command...")
     endif()
-    find_package(Python3 REQUIRED COMPONENTS Interpreter)
     if("${COPPELIASIM_GENERATE_STUBS_LUA_FILE}" STREQUAL "")
         add_custom_command(OUTPUT ${GENERATED_OUTPUT_DIR}/stubs.cpp ${GENERATED_OUTPUT_DIR}/stubs.h
-            COMMAND ${Python3_EXECUTABLE} ${LIBPLUGIN_DIR}/simStubsGen/generate.py --xml-file ${COPPELIASIM_GENERATE_STUBS_XML_FILE} --gen-all ${GENERATED_OUTPUT_DIR}
+            COMMAND python ${LIBPLUGIN_DIR}/simStubsGen/generate.py --xml-file ${COPPELIASIM_GENERATE_STUBS_XML_FILE} --gen-all ${GENERATED_OUTPUT_DIR}
             DEPENDS ${COPPELIASIM_GENERATE_STUBS_XML_FILE})
     else()
         add_custom_command(OUTPUT ${GENERATED_OUTPUT_DIR}/stubs.cpp ${GENERATED_OUTPUT_DIR}/stubs.h ${GENERATED_OUTPUT_DIR}/lua_calltips.cpp
-            COMMAND ${Python3_EXECUTABLE} ${LIBPLUGIN_DIR}/simStubsGen/generate.py --xml-file ${COPPELIASIM_GENERATE_STUBS_XML_FILE} --lua-file ${COPPELIASIM_GENERATE_STUBS_LUA_FILE} --gen-all ${GENERATED_OUTPUT_DIR}
+            COMMAND python ${LIBPLUGIN_DIR}/simStubsGen/generate.py --xml-file ${COPPELIASIM_GENERATE_STUBS_XML_FILE} --lua-file ${COPPELIASIM_GENERATE_STUBS_LUA_FILE} --gen-all ${GENERATED_OUTPUT_DIR}
             DEPENDS ${COPPELIASIM_GENERATE_STUBS_XML_FILE})
     endif()
     set_property(SOURCE ${GENERATED_OUTPUT_DIR}/stubs.cpp PROPERTY SKIP_AUTOGEN ON)

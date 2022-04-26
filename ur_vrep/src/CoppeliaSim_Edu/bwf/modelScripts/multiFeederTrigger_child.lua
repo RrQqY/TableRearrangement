@@ -79,7 +79,7 @@ wasMultiFeederTriggered=function()
     return false
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.MULTIFEEDER)
     data=sim.unpackTable(data)
@@ -105,7 +105,7 @@ function sysCall_init()
     counter=0
 end
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     local t=sim.getSimulationTime()
     local dt=sim.getSimulationTimeStep()
 

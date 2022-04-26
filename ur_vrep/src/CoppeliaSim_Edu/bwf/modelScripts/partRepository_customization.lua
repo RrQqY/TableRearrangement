@@ -1066,7 +1066,7 @@ function resolveDuplicateNames()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.customizationscriptcall_initialization) then
     partToEdit=-1
     lastT=sim.getSystemTimeInMs(-1)
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
@@ -1078,7 +1078,7 @@ function sysCall_init()
     originalPartHolder=sim.getObjectHandle('partRepository_modelParts')
     functionalPartHolder=sim.getObjectHandle('partRepository_functional')
     proxSensor=sim.getObjectHandle('partRepository_sensor')
-	
+	sim.setScriptAttribute(sim.handle_self,sim.customizationscriptattribute_activeduringsimulation,false)
 
     
     -- Following because of a bug in V-REP V3.3.3 and before:
@@ -1218,7 +1218,7 @@ checkPotentialNewParts=function(potentialParts)
     return retVal
 end
 
-function sysCall_nonSimulation()
+if (sim_call_type==sim.customizationscriptcall_nonsimulation) then
     showOrHideUi1IfNeeded()
     updateVisualizeImage()
     -- Following is the central part where we set undo points:
@@ -1251,21 +1251,21 @@ function sysCall_nonSimulation()
     pricingRequest_executeIfNeeded()
 end
 
-function sysCall_afterSimulation()
+if (sim_call_type==sim.customizationscriptcall_firstaftersimulation) then
     sim.setObjectInt32Parameter(model,sim.objintparam_visibility_layer,1)
 end
 
-function sysCall_beforeSimulation()
+if (sim_call_type==sim.customizationscriptcall_lastbeforesimulation) then
     sim.setObjectInt32Parameter(model,sim.objintparam_visibility_layer,0)
     removeDlg1()
 end
 
-function sysCall_beforeInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_lastbeforeinstanceswitch) then
     removeDlg1()
     removeFromPluginRepresentation()
 end
 
-function sysCall_afterInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_firstafterinstanceswitch) then
     updatePluginRepresentation()
 end
 
@@ -1355,12 +1355,12 @@ function pricing_callback()
 end
 
 
-function sysCall_br() 
- --   pricing_callback()
+if (sim_call_type==sim.customizationscriptcall_br+2) then
+    pricing_callback()
 end
 
 
-function sysCall_cleanup()
+if (sim_call_type==sim.customizationscriptcall_cleanup) then
     removeDlg1()
     removeFromPluginRepresentation()
     if sim.isHandleValid(model)==1 then

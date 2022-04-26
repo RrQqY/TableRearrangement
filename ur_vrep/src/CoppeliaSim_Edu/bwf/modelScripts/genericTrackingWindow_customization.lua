@@ -1108,7 +1108,7 @@ function removeDlg()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.customizationscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     _MODELVERSION_=0
     _CODEVERSION_=0
@@ -1128,7 +1128,7 @@ function sysCall_init()
     trackBox=sim.getObjectHandle('genericTrackingWindow_track')
     stopLineBox=sim.getObjectHandle('genericTrackingWindow_stopLine')
     transferBox=sim.getObjectHandle('genericTrackingWindow_transfer')
-    
+    sim.setScriptAttribute(sim.handle_self,sim.customizationscriptattribute_activeduringsimulation,false)
     -- Following for backward compatibility:
     createPalletPointsIfNeeded()
     updatePluginRepresentation()
@@ -1144,11 +1144,11 @@ showOrHideUiIfNeeded=function()
     end
 end
 
-function sysCall_nonSimulation()
+if (sim_call_type==sim.customizationscriptcall_nonsimulation) then
     showOrHideUiIfNeeded()
 end
 
-function sysCall_afterSimulation()
+if (sim_call_type==sim.customizationscriptcall_firstaftersimulation) then
     setSizes() -- reset the box's shift bias
     local c=readInfo()
     c['transferItems']={}
@@ -1164,7 +1164,7 @@ function sysCall_afterSimulation()
     showOrHideUiIfNeeded()
 end
 
-function sysCall_beforeSimulation()
+if (sim_call_type==sim.customizationscriptcall_lastbeforesimulation) then
     removeDlg()
     local c=readInfo()
     local show=simBWF.modifyAuxVisualizationItems(sim.boolAnd32(c['bitCoded'],1)==0)
@@ -1173,16 +1173,16 @@ function sysCall_beforeSimulation()
     end
 end
 
-function sysCall_beforeInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_lastbeforeinstanceswitch) then
     removeDlg()
     removeFromPluginRepresentation()
 end
 
-function sysCall_afterInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_firstafterinstanceswitch) then
     updatePluginRepresentation()
 end
 
-function sysCall_cleanup()
+if (sim_call_type==sim.customizationscriptcall_cleanup) then
     removeDlg()
     removeFromPluginRepresentation()
     simBWF.writeSessionPersistentObjectData(model,"dlgPosAndSize",previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos)

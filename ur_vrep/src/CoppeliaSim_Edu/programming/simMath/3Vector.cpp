@@ -42,15 +42,15 @@ simMathReal C3Vector::getAngle(const C3Vector& v) const
 C3X3Matrix C3Vector::getProductWithStar() const
 {
     C3X3Matrix retM;
-    retM(0,0)=simZero;
+    retM(0,0)=0.0f;
     retM(0,1)=-data[2];
     retM(0,2)=data[1];
     retM(1,0)=data[2];
-    retM(1,1)=simZero;
+    retM(1,1)=0.0f;
     retM(1,2)=-data[0];
     retM(2,0)=-data[1];
     retM(2,1)=data[0];
-    retM(2,2)=simZero;
+    retM(2,2)=0.0f;
     return(retM);
 }
 
@@ -86,8 +86,8 @@ void C3Vector::buildInterpolation(const C3Vector& fromThis,const C3Vector& toTha
     (*this)=fromThis+((toThat-fromThis)*t);
 }
 
-const C3Vector C3Vector::oneOneOneVector(simOne,simOne,simOne);
-const C3Vector C3Vector::unitXVector(simOne,simZero,simZero);
-const C3Vector C3Vector::unitYVector(simZero,simOne,simZero);
-const C3Vector C3Vector::unitZVector(simZero,simZero,simOne);
-const C3Vector C3Vector::zeroVector(simZero,simZero,simZero);
+const C3Vector C3Vector::oneOneOneVector(1.0f,1.0f,1.0f);
+const C3Vector C3Vector::unitXVector(1.0f,0.0f,0.0f);
+const C3Vector C3Vector::unitYVector(0.0f,1.0f,0.0f);
+const C3Vector C3Vector::unitZVector(0.0f,0.0f,1.0f);
+const C3Vector C3Vector::zeroVector(0.0f,0.0f,0.0f);

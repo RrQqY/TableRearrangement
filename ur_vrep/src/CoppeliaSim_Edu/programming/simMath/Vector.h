@@ -10,7 +10,7 @@ class CVector
 {
 public:
     CVector();
-    CVector(size_t nElements);
+    CVector(int nElements);
     CVector(const C3Vector& v);
     CVector(const C4Vector& v);
     CVector(const C6Vector& v);
@@ -40,17 +40,17 @@ public:
     CVector& operator= (const C7Vector& v);
     CVector& operator= (const CVector& v);
 
-inline simMathReal& operator() (size_t i)
+inline simMathReal& operator() (int i)
 {
     return(data[i]);
 }
 
-inline const simMathReal& operator() (size_t i) const
+inline const simMathReal& operator() (int i) const
 {
     return(data[i]);
 }
 
-    size_t elements;
+    int elements;
 private:
     simMathReal* data;
 };

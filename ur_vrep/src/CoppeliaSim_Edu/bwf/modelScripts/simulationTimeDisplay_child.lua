@@ -1,4 +1,4 @@
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     local data=sim.readCustomDataBlock(model,'XYZ_SIMULATIONTIME_INFO')
     data=sim.unpackTable(data)
@@ -23,7 +23,7 @@ function sysCall_init()
     startTime=sim.getSystemTimeInMs(-1)
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.childscriptcall_sensing) then
     if ui then
         local t={sim.getSimulationTime(),sim.getSystemTimeInMs(startTime)/1000}
         local cnt=2
@@ -46,7 +46,7 @@ function sysCall_sensing()
 end
 
 
-function sysCall_cleanup()
+if (sim_call_type==sim.childscriptcall_cleanup) then
     if ui then
         simUI.destroy(ui)
     end

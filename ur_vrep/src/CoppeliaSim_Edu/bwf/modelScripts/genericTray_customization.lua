@@ -776,7 +776,7 @@ function removeDlg()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.customizationscriptcall_initialization) then
     dlgMainTabIndex=0
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     _MODELVERSION_=0
@@ -787,7 +787,7 @@ function sysCall_init()
     connection=sim.getObjectHandle('genericTray_borderConnection')
     border=sim.getObjectChild(connection,0)
     borderElement=sim.getObjectHandle('genericTray_borderElement')
-	
+	sim.setScriptAttribute(sim.handle_self,sim.customizationscriptattribute_activeduringsimulation,false)
     updatePluginRepresentation()
     previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos=simBWF.readSessionPersistentObjectData(model,"dlgPosAndSize")
 end
@@ -801,27 +801,27 @@ showOrHideUiIfNeeded=function()
     end
 end
 
-function sysCall_nonSimulation()
+if (sim_call_type==sim.customizationscriptcall_nonsimulation) then
     showOrHideUiIfNeeded()
 end
 
-function sysCall_afterSimulation()
+if (sim_call_type==sim.customizationscriptcall_firstaftersimulation) then
 end
 
-function sysCall_beforeSimulation()
+if (sim_call_type==sim.customizationscriptcall_lastbeforesimulation) then
     removeDlg()
 end
 
-function sysCall_beforeInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_lastbeforeinstanceswitch) then
     removeDlg()
     removeFromPluginRepresentation()
 end
 
-function sysCall_afterInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_firstafterinstanceswitch) then
     updatePluginRepresentation()
 end
 
-function sysCall_cleanup()
+if (sim_call_type==sim.customizationscriptcall_cleanup) then
     removeDlg()
     removeFromPluginRepresentation()
     local repo,modelHolder=simBWF.getPartRepositoryHandles()

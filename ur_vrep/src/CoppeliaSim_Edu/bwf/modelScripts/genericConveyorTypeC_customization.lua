@@ -716,7 +716,7 @@ function removeDlg()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.customizationscriptcall_initialization) then
     dlgMainTabIndex=0
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     _MODELVERSION_=0
@@ -750,7 +750,7 @@ function sysCall_init()
     pad=sim.getObjectHandle('genericConveyorTypeC_pad')
     path=sim.getObjectHandle('genericConveyorTypeC_path')
 
-	
+	sim.setScriptAttribute(sim.handle_self,sim.customizationscriptattribute_activeduringsimulation,true)
     updatePluginRepresentation()
     previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos=simBWF.readSessionPersistentObjectData(model,"dlgPosAndSize")
 end
@@ -764,11 +764,11 @@ showOrHideUiIfNeeded=function()
     end
 end
 
-function sysCall_nonSimulation()
+if (sim_call_type==sim.customizationscriptcall_nonsimulation) then
     showOrHideUiIfNeeded()
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.customizationscriptcall_simulationsensing) then
     if simJustStarted then
         updateEnabledDisabledItems()
     end
@@ -776,11 +776,11 @@ function sysCall_sensing()
     showOrHideUiIfNeeded()
 end
 
-function sysCall_suspend()
+if (sim_call_type==sim.customizationscriptcall_simulationpause) then
     showOrHideUiIfNeeded()
 end
 
-function sysCall_afterSimulation()
+if (sim_call_type==sim.customizationscriptcall_firstaftersimulation) then
     updateEnabledDisabledItems()
     local conf=readInfo()
     conf['encoderDistance']=0
@@ -788,20 +788,20 @@ function sysCall_afterSimulation()
     writeInfo(conf)
 end
 
-function sysCall_beforeSimulation()
+if (sim_call_type==sim.customizationscriptcall_lastbeforesimulation) then
     simJustStarted=true
 end
 
-function sysCall_beforeInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_lastbeforeinstanceswitch) then
     removeDlg()
     removeFromPluginRepresentation()
 end
 
-function sysCall_afterInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_firstafterinstanceswitch) then
     updatePluginRepresentation()
 end
 
-function sysCall_cleanup()
+if (sim_call_type==sim.customizationscriptcall_cleanup) then
     removeDlg()
     removeFromPluginRepresentation()
     simBWF.writeSessionPersistentObjectData(model,"dlgPosAndSize",previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos)

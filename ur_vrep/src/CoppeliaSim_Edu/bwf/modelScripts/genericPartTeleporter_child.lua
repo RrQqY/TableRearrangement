@@ -42,7 +42,7 @@ getSensorPart=function()
     return -1
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     local data=sim.readCustomDataBlock(model,'XYZ_PARTTELEPORTER_INFO')
     data=sim.unpackTable(data)
@@ -68,7 +68,7 @@ function sysCall_init()
     end
 end
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     if isSource and destinationPod>=0 and isEnabled() then
         local part=getSensorPart()
         if part>=0 then

@@ -226,7 +226,7 @@ attachDummiesAndDecorate=function(part,partData)
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     trackingWindowShape=sim.getObjectHandle('genericTrackingWindow_track')
     stopLineShape=sim.getObjectHandle('genericTrackingWindow_stopLine')
@@ -282,7 +282,7 @@ function sysCall_init()
     staticWindowFrozen=false
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.childscriptcall_sensing) then
     if conveyorHandle>=0 then
         sensing_withConveyor()
     else

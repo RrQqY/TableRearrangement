@@ -172,7 +172,7 @@ generateTrackingLocations=function()
     return retTable
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     palletizerData=sim.readCustomDataBlock(model,'XYZ_PARTPALLETIZER_INFO')
     palletizerData=sim.unpackTable(palletizerData)
@@ -197,7 +197,7 @@ function sysCall_init()
     trackDy=0
 end
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     if enabled then
         local t=sim.getSimulationTime()
         local dt=t-previousTime

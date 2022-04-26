@@ -1,4 +1,4 @@
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     version=sim.getInt32Parameter(sim.intparam_program_version)
     local data=sim.unpackTable(sim.readCustomDataBlock(model,simBWF.modelTags.OLDOVERRIDE))

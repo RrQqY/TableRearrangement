@@ -30,7 +30,7 @@ function getTriggerType()
     return 0
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.CONVEYOR)
     data=sim.unpackTable(data)
@@ -56,7 +56,7 @@ function sysCall_init()
     totShift=0
 end 
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.CONVEYOR)
     data=sim.unpackTable(data)
     maxVel=data['velocity']
@@ -116,7 +116,7 @@ function sysCall_actuation()
     sim.writeCustomDataBlock(model,simBWF.modelTags.CONVEYOR,sim.packTable(data))
 end 
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     for i=1,#sensors,1 do
         sim.resetProximitySensor(sensors[i])
     end

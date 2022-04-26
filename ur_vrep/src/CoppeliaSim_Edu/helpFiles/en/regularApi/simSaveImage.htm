@@ -33,12 +33,12 @@ C synopsis
 <tr class=apiTableTr> 
 <td class=apiTableLeftCParam>C parameters</td> 
 <td class=apiTableRightCParam>
-<div><strong>image</strong>: a pointer to rgb, rgba or greyscale values.</div>
+<div><strong>image</strong>: a pointer to rgb or rgba values.</div>
 <div><strong>resolution</strong>: the x/y resolution of the provided image.</div>
-<div><strong>options</strong>: bit-coded. If bit0 and bit1 represent the format of the provided image (0=rgb, 1=rgba, 2=greyscale).</div>
+<div><strong>options</strong>: bit-coded. If bit0 is set (1), then the provided image is rgba, otherwise it is rgb.</div>
 <div><strong>filename</strong>: the name of the file to write. The file extension indicates the format.</div>
 <div><strong>quality</strong>: the quality of the written image: 0 for best compression, 100 for largest file. Use -1 for default behaviour.</div>
-<div><strong>reserved</strong>: Reserved for future extension. Set to nullptr.</div>
+<div><strong>reserved</strong>: Reserved for future extension. Set to NULL.</div>
 </td> 
 </tr> 
 <tr class=apiTableTr> 
@@ -54,15 +54,16 @@ C return value
 Lua synopsis
 </td> 
 <td class=apiTableRightLSyn>
-<div>string imgBuffer=sim.saveImage(string image,table_2 resolution,number options,string filename,number quality)</div>
+<div>1) number result=sim.saveImage(string image,table_2 resolution,number options,string filename,number quality)</div>
+<div>2) string imgBuffer=sim.saveImage(string image,table_2 resolution,number options,string filename,number quality)</div>
 </td> 
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
 <td class=apiTableRightLParam>
-<div><strong>image</strong>:  the image (in rgb, rgba or greyscale format)</div>
+<div><strong>image</strong>: a pointer to rgb or rgba values.</div>
 <div><strong>resolution</strong>: the x/y resolution of the provided image.</div>
-<div><strong>options</strong>: bit-coded. If bit0 and bit1 represent the format of the provided image (0=rgb, 1=rgba, 2=greyscale).</div>
+<div><strong>options</strong>: bit-coded. If bit0 is set (1), then the provided image is rgba, otherwise it is rgb.</div>
 <div><strong>filename</strong>: the name of the file to write. The file extension indicates the format. If the filename only contains '.xxx', where xxx represents the file format, then the image will be saved to memory</div>
 <div><strong>quality</strong>: the quality of the written image: 0 for best compression, 100 for largest file. Use -1 for default behaviour.</div>
 </td> 
@@ -72,7 +73,8 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div><strong>imgBuffer</strong>: a buffer containing the image in packed format (e.g. png, jpg, etc.), if the image was specified to be saved to memory.</div>
+<div>1) <strong>result</strong>: -1 if operation was not successful</div>
+<div>2) <strong>imgBuffer</strong>: a buffer containing the image in packed format (e.g. png, jpg, etc.)</div>
 </td> 
 </tr> 
 </table> 

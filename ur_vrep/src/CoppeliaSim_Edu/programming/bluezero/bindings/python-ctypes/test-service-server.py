@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import b0
 
-if not b0.is_initialized():
-    b0.init()
 def callback(req):
     req_str = req.decode('utf-8')
     print('Received request "%s"...' % req_str)

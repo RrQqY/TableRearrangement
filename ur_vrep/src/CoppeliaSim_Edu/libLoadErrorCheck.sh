@@ -14,7 +14,7 @@ fi
 
 appname="`basename "$thisscript" | sed 's,\.sh$,,'`"
 
-LD_LIBRARY_PATH="$dirname:$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$dirname"
 export LD_LIBRARY_PATH
 ldd "$dirname/libcoppeliaSim.so" #replace libcoppeliaSim.so with the library that is having difficulties to load 
 

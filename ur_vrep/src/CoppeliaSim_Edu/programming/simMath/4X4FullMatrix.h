@@ -34,11 +34,11 @@ public:
     C4X4FullMatrix& operator= (const C4X4Matrix& m);
     C4X4FullMatrix& operator= (const C4X4FullMatrix& m);
 
-    inline simMathReal& operator() (size_t row,size_t col)
+    inline simMathReal& operator() (int row,int col)
     {
         return(data[row][col]);
     }
-    inline const simMathReal& operator() (size_t row,size_t col) const
+    inline const simMathReal& operator() (int row,int col) const
     {
         return(data[row][col]);
     }

@@ -48,7 +48,7 @@ updateStatisticsDialog=function(enabled)
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     sensor=sim.getObjectHandle('genericPartSink_sensor')
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.PARTSINK)
@@ -59,7 +59,7 @@ function sysCall_init()
 end
 
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     if operational then
         local shapes=sim.getObjectsInTree(sim.handle_scene,sim.object_shape_type)
         for i=1,#shapes,1 do

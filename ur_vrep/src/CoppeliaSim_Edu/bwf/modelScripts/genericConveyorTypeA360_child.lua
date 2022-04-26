@@ -63,7 +63,7 @@ function getMasterDeltaShiftIfApplicable()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.CONVEYOR)
     data=sim.unpackTable(data)
@@ -78,7 +78,7 @@ function sysCall_init()
     totShift=0
 end 
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.CONVEYOR)
     data=sim.unpackTable(data)
     maxVel=data['velocity']

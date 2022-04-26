@@ -50,7 +50,7 @@ C synopsis
 C return value
 </td> 
 <td class=apiTableRightCRet>
-<div>-1 if operation was not successful</div>
+<div>-1 if operation was not successful. In a future release, a more differentiated return value might be available</div>
 </td> 
 </tr> 
 <tr class=apiTableTr> 
@@ -72,8 +72,9 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div><strong>resultMatrix</strong>: the result matrix (a table containing 12 values (the last row (0,0,0,1) is omitted))</div>
-</td> 
+<div></div>
+<div><strong>resultMatrix</strong>: the result matrix (a table containing 12 values (the last row (0,0,0,1) is omitted)). Table values in Lua are indexed from 1, not 0!</div>
+<div></div></td> 
 </tr> 
 </table> 
 

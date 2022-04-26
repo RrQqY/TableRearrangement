@@ -1,3 +1,2 @@
-local simROS ={}
-
-return simROS
+local ros={}
+return ros

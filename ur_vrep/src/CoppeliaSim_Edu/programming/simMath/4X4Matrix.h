@@ -69,29 +69,29 @@ public:
     }
     inline void copyTo(simMathReal m[4][4]) const
     {
-        for (size_t i=0;i<3;i++)
+        for (int i=0;i<3;i++)
         {
-            for (size_t j=0;j<3;j++)
+            for (int j=0;j<3;j++)
                 m[i][j]=M(i,j);
             m[i][3]=X(i);
         }
-        m[3][0]=simZero;
-        m[3][1]=simZero;
-        m[3][2]=simZero;
-        m[3][3]=simOne;
+        m[3][0]=0.0f;
+        m[3][1]=0.0f;
+        m[3][2]=0.0f;
+        m[3][3]=1.0f;
     }
     inline void set(simMathReal m[4][4])
     {
-        for (size_t i=0;i<3;i++)
+        for (int i=0;i<3;i++)
         {
-            for (size_t j=0;j<3;j++)
+            for (int j=0;j<3;j++)
                 M.axis[j](i)=m[i][j];
             X(i)=m[i][3];
         }
     }
     inline void copyToInterface(simMathReal* m) const
     { // Temporary routine. Remove later!
-        for (size_t i=0;i<3;i++)
+        for (int i=0;i<3;i++)
         {
             m[4*i+0]=M.axis[0](i);
             m[4*i+1]=M.axis[1](i);
@@ -101,7 +101,7 @@ public:
     }
     inline void copyFromInterface(const simMathReal* m)
     { // Temporary routine. Remove later!
-        for (size_t i=0;i<3;i++)
+        for (int i=0;i<3;i++)
         {
             M.axis[0](i)=m[4*i+0];
             M.axis[1](i)=m[4*i+1];

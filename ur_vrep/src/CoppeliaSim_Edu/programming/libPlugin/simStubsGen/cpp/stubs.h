@@ -4,11 +4,15 @@
 #ifndef STUBS_H__INCLUDED
 #define STUBS_H__INCLUDED
 
+#ifdef QT_COMPIL
+#include <QThread>
+#endif // QT_COMPIL
+
 #include <simLib.h>
 #include <string>
 #include <vector>
 #include <boost/assign/list_of.hpp>
-#include <boost/format.hpp>
+#include <boost/lexical_cast.hpp>
 #include <boost/optional.hpp>
 
 struct exception : public std::exception
@@ -18,72 +22,6 @@ struct exception : public std::exception
     ~exception() throw() {}
     const char* what() const throw() {return s.c_str();}
 };
-
-void log(int v, const std::string &msg);
-void log(int v, boost::format &fmt);
-
-template<typename... Arguments>
-static void log(int v, const std::string &fmt, Arguments&&... args)
-{
-    try
-    {
-        boost::format fmt_(fmt);
-        log(v, fmt_, std::forward<Arguments>(args)...);
-    }
-    catch(boost::io::too_many_args &ex)
-    {
-        std::string s = fmt;
-        s += " (error during formatting)";
-        log(v, s);
-    }
-}
-
-class FuncTracer
-{
-    int l_;
-    std::string f_;
-public:
-    FuncTracer(const std::string &f, int l = sim_verbosity_trace);
-    ~FuncTracer();
-};
-
-#ifndef __FUNC__
-#ifdef __PRETTY_FUNCTION__
-#define __FUNC__ __PRETTY_FUNCTION__
-#else
-#define __FUNC__ __func__
-#endif
-#endif // __FUNC__
-
-#define TRACE_FUNC FuncTracer __funcTracer__##__LINE__((boost::format("%s:%d:%s:") % __FILE__ % __LINE__ % __FUNC__).str())
-
-#ifdef QT_COMPIL
-#include <QThread>
-
-extern Qt::HANDLE UI_THREAD;
-extern Qt::HANDLE SIM_THREAD;
-
-std::string threadNickname();
-void uiThread();
-void simThread();
-
-#define ASSERT_THREAD(ID) \
-    if(UI_THREAD == NULL) {\
-        log(sim_verbosity_debug, "warning: cannot check ASSERT_THREAD(" #ID ") because global variable UI_THREAD is not set yet.");\
-    } else if(strcmp(#ID, "UI") == 0) {\
-        if(QThread::currentThreadId() != UI_THREAD) {\
-            log(sim_verbosity_errors, boost::format("%s:%d %s should be called from UI thread") % __FILE__ % __LINE__ % __FUNC__);\
-            exit(1);\
-        }\
-    } else if(strcmp(#ID, "!UI") == 0) {\
-        if(QThread::currentThreadId() == UI_THREAD) {\
-            log(sim_verbosity_errors, boost::format("%s:%d %s should NOT be called from UI thread") % __FILE__ % __LINE__ % __FUNC__);\
-            exit(1);\
-        }\
-    } else {\
-        log(sim_verbosity_debug, "warning: cannot check ASSERT_THREAD(" #ID "). Can check only UI and !UI.");\
-    }
-#endif // QT_COMPIL
 
 simInt simRegisterScriptCallbackFunctionE(const simChar *funcNameAtPluginName, const simChar *callTips, simVoid (*callBack)(struct SScriptCallBack *cb));
 simInt simRegisterScriptVariableE(const simChar *varName, const simChar *varValue, simInt stackID);
@@ -179,8 +117,6 @@ const char* `enum.name.lower()`_string(`enum.name` x);
 #py for cmd in plugin.commands:
 struct `cmd.name`_in
 {
-    int _scriptID;
-    int _stackID;
 #py for p in cmd.params:
     `p.ctype()` `p.name`;
 #py endfor

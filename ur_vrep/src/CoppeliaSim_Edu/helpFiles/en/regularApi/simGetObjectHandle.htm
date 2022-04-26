@@ -22,7 +22,7 @@
 <td class=apiTableLeftDescr>
 Description 
 </td> 
-<td class=apiTableRightDescr>Retrieves an object handle based on its name. See also the section on <a href="../accessingGeneralObjects.htm">accessing general-type objects</a>, <a href="simIsHandleValid.htm">sim.isHandleValid</a> and <a href="simGetObjectUniqueIdentifier.htm">sim.getObjectUniqueIdentifier</a>.<br></td>
+<td class=apiTableRightDescr>Retrieves an object handle based on its name. The operation of this function depends on the current name suffix settings (see <a href="simGetNameSuffix.htm">sim.getNameSuffix</a>, <a href="simSetNameSuffix.htm">sim.setNameSuffix</a>, and the section on <a href="../accessingGeneralObjects.htm">accessing general-type objects</a>). See also <a href="simIsHandleValid.htm">sim.isHandleValid</a> and <a href="simGetObjectUniqueIdentifier.htm">sim.getObjectUniqueIdentifier</a>.<br></td>
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftCSyn>
@@ -49,12 +49,12 @@ C return value
 <td class=apiTableLeftLSyn>
 Lua synopsis
 </td> 
-<td class=apiTableRightLSyn>number objectHandle=sim.getObjectHandle(string/number objectName)<br></td> 
+<td class=apiTableRightLSyn>number objectHandle=sim.getObjectHandle(string objectName)<br></td> 
 </tr> 
 <tr class=apiTableTr> 
 <td class=apiTableLeftLParam>Lua parameters</td> 
 <td class=apiTableRightLParam>
-<div>Similar to the C-function counterpart. The objectName argument can additionally also be <em>sim.handle_self</em>, in order to retrieve the handle of the object associated with the script currently executing.<br>
+<div>Same as C-function<br>
 </div>
 <div></div></td> 
 </tr> 
@@ -63,7 +63,7 @@ Lua synopsis
 Lua return values
 </td> 
 <td class=apiTableRightLRet>
-<div>Similar to the C-function counterpart<br>
+<div>Same as C-function<br>
 </div>
 <div></div></td> 
 </tr> 

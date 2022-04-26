@@ -1,19 +1,16 @@
-allowOldEduRelease=7501
-
 // Debugging
 // =================================================
 alwaysShowConsole = false
-verbosity = default // to override console verbosity setting, use any of: default (do not override), none, errors, warnings, loadinfos, scripterrors, scriptwarnings, msgs, infos, debug, trace, tracelua or traceall
-statusbarVerbosity = default // to override statusbar verbosity setting, use any of: default (do not override), none, errors, warnings, loadinfos, scripterrors, scriptwarnings, msgs, infos, debug, trace, tracelua or traceall
-logFilter =  // leave empty for no filter. Filter format: txta1&txta2&...&txtaN|txtb1&txtb2&...&txtbN|...
-dialogVerbosity = default // to override dialog verbosity setting, use any of: default (do not override), none, errors, warnings, questions or infos
-undecoratedStatusbarMessages = false
-consoleMsgsToFile = false // if true, console messages are sent to debugLog.txt
+debugInternalFunctionAccess = false // will also heavily slow down CoppeliaSim
+debugCApiAccess = false // will also drastically slow down CoppeliaSim
+debugLuaApiAccess = false // will also slow down CoppeliaSim
+sendDebugInformationToFile = false // if true, debug info is sent to debugLog.txt
 
 
 // Rendering
 // =================================================
 idleFps = 8
+threadedRenderingDuringSimulation = 0 // recommended to keep 0 (-1=disabled, 0=pre-enabled, 1=enabled).
 desiredOpenGlMajor = -1 // recommended to keep -1.
 desiredOpenGlMinor = -1 // recommended to keep -1.
 offscreenContextType = -1 // recommended to keep -1 (-1=default, 0=Qt offscreen, 1=QGLWidget/QOpenGLWidget visible, 2=QGLWidget/QOpenGLWidget invisible).
@@ -38,7 +35,6 @@ hierarchyRefreshCnt = 3
 
 // Visual
 // =================================================
-darkMode = false
 renderingSurfaceVShift = 0
 renderingSurfaceVResize = 0
 displayWorldRef = true
@@ -143,9 +139,11 @@ timeInMsForUndoRedoTooLongWarning = 200
 // =================================================
 doNotShowCrashRecoveryMessage = false
 doNotShowUpdateCheckMessage = false
+doNotShowSceneSelectionThumbnails = false
 doNotShowProgressBars = false
 doNotShowAcknowledgmentMessages = false
 doNotShowVideoCompressionLibraryLoadError = false
+redirectStatusbarMsgToConsoleInHeadlessMode = false
 suppressStartupDialogs = false
 suppressXmlOverwriteMsg = false
 
@@ -156,12 +154,13 @@ middleMouseButtonSwitchesModes = false // has only an effect if navigationBackwa
 navigationBackwardCompatibility = false // recommended to keep false.
 colorAdjust_backCompatibility = 1 // recommended to keep 1.0
 specificGpuTweak = false
+enableOldCalcModuleGuis = false
 useAlternateSerialPortRoutines = false
-disableOpenGlBasedCustomUi = false
+enableOpenGlBasedCustomUiEditor = false
 changeScriptCodeForNewApiNotation = 1 // 1=enabled, 0=disabled.
 supportOldApiNotation = true
+enableOldMillObjects = false
 enableOldMirrorObjects = false
-useOldIk = false
 
 
 // Various

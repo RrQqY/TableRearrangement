@@ -62,13 +62,13 @@ function isATransporterWithinRange()
     return false
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     buckets=getAvailableBuckets()
     transporters=getAvailableTransporters()
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.childscriptcall_sensing) then
     local data=readInfo()
     if isABucketWithinRange() or isATransporterWithinRange() then
         data['status']='occupied'
@@ -81,7 +81,7 @@ function sysCall_sensing()
 end
 
 
-function sysCall_cleanup()
+if (sim_call_type==sim.childscriptcall_cleanup) then
 
 	-- Put some restoration code here
 

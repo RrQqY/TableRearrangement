@@ -1,91 +1,91 @@
 CoppeliaSim / V-REP was developed over several years, however, without the contributions, help, support, advice, or generosity of many people, it wouldn’t have become what it is today. I wish to thank and acknowledge the contributions in various forms of the following people, group of people and organizations:
 
--    Nobuto Matsuhira (Toshiba Corporate R&D center), for the enormous support, belief in me, and kindness he always showed me
--    Fumio Ozaki (Toshiba Corporate R&D center), for the patience, trust and freedom he gave me
--    Hoimin Jeong (Cubictek Co. Ltd), for his support and belief in me even in difficult situations
--    The Lua development team (PUC-Rio, www.lua.org), for the free Lua interpreter they provide. See below.
--    Nokia corporation, the Qt GUI Toolkit development team and all other contributors, for the Qt GUI Toolkit library they provide. See below.
--    Digia Plc and/or its subsidiary(-ies), and all other contributors, for the Qt Property Browser they provide. See below.
--    Antonio Escano Scuri and Mark Stroetzel Glasberg for the free WebBook framework they provide. See below.
--    Diego Nehab (http://w3.impa.br/~diego/software/luasocket/home.html), for the free LuaSocket extension library. See below.
--    Erwin Coumans (http://www.bulletphysics.com), for the free physics library he provides. See below.
--    Russel L. Smith (http://www.ode.org), for the free physics library he provides. See below.
--    Daniel Fiser for his collision routines (libccd, used with ODE). See below.
--    Pierre Terdiman for his collision routines (OPCODE, used with ODE).
--    Francisco Leon Najera for his collision routines (GIMPACT, used with Bullet). See below.
--    The people and community behind the Open Motion Planning Library (OMPL, http://ompl.kavrakilab.org). <a href="#ompl">See the license</a>.</li>
--    Khaled Mamou, for the excellent convex decomposition routines he provides. See below.
--    Brad Barber, for the efficient Qhull routines he provides. See below.
--    François Conti, for the CHAI3D library he provides. See below.
--    The Scintilla development team (www.scintilla.org), for the free source code editing component they provide. The Scintilla library is used via commercial QScintilla (www.riverbankcomputing.com).
--    Lee Thomason, for his nice and compact tinyxml routines. See below.
--    The developers of the lib3ds library (www.lib3ds.org) for the free 3DS importer they provide. See below.
--    Marcus Geelnard for the Basic Compression Library he provides (http://bcl.comli.eu/home-en.html). See below.
--    Martin Courchesne and SimWat for the initial Vortex plugin for CoppeliaSim they provided.
--    CM Labs for the free version of their Vortex physics engine (Vortex Studio), used in CoppeliaSim's Vortex plugin.
--    Sean Barrett for his image loading routines he provides.
--    Jari Komppa for the ESCAPI library that is wrapped in the webcam plugin for CoppeliaSim.
--    Julio Jerez and Alain Suero, for the Newton plugin for CoppeliaSim they provide. See below.
--    René Nyffenegger, for the base64 source code he provides. See below.
--    The programming community on www.gamedev.net and www.codeproject.com for the many invaluable advices, tips and code snippets.
--     The developers of the FFmpeg library (http://www.ffmpeg.org) and Andrew Voznytsa who wrote a library for CoppeliaSim that offers video compression functionality based on FFmpeg. See below.
--    The Computer Graphics Group at RWTH Aachen, who developed the OpenMesh library (http://www.openmesh.org). The library is used in the CoppeliaSim plugin located in folder programming/simExtOpenMesh. See below.
--    The team behind the Assimp library (http://www.assimp.org). The library is used in the CoppeliaSim plugin simExtAssimp. See below.
--    Torsten Kroeger and Reflexxes GmbH, for providing their Reflexxes Motion Library type IV as a CoppeliaSim plugin. See below.
--    Chris Hecker for his mass properties calculation algorithm. See below.
--    Christian Dippel, my cousin, who helped me in many ways (CAD models, flyer preparation, etc.)
--    Lyall Randell who not only gave me permission to use his CAD models, but also created many additional ones especially for CoppeliaSim.
--    Eric Rohmer who is a thorough CoppeliaSim tester and an “idea machine”. He is also the creator of several models and plugins for CoppeliaSim (e.g. simExtWii or simExtJoystick).
--    Svetlin Penkov for creating a first ROS plugin, and for being always available for ROS-related questions.
--    Ignacio Tartavull for creating a first URDF plugin, and for being extremely helpful at the right time. 
--    Maciej Szymanski, Ibrahim Abd Elkader, Mahendra Koteshwar and Asanka Wickramasinghe for various tasks in relation with CoppeliaSim porting and remote Api bindings
--    Julien Tharin for various tasks in relation with CoppeliaSim porting
--    Preben Hjornet for creating precise simulation models of extremely complex robots
--    "gl.tter" for the WiiYourself! wiimote code (http://gl.tter.org).
--    The developers behind the various elements around the kinect (OpenNI, NITE, etc.). The application that allows CoppeliaSim to access skeleton data from a kinect device is courtesy of Eric Rohmer, and based on an OpenNI code. See below.
--    Alex Doumanoglou for writing the Collada importer/exporter plugin.
--    Cedric Pradalier for extending the ROS interface with useful publisher/subscriber types.
--    Diego Daniel Santiago for writing a shared memory communication plugin, and the plugin for Simulink-CoppeliaSim communication: https://github.com/santdiego/simExtSimulink
--    The developers of the POV-Ray raytracer, Persistence of Vision Raytracer Pty. Ltd. POV-Ray uses the GNU AFFERO GENERAL PUBLIC LICENSE, a copy of which is included in the software package.
--    The developers of CGAL library (http://www.cgal.org/), which is used by the simExtSurfaceReconstruction plugin. See below.
--    All the developers behind the OpenCV library, which is used by the simExtImage plugin. See below.
--    Mike Pall for his LuaJIT (Lua Just-in-Time Compiler). See below.
--    David Heiko Kolf, for his JSON module for Lua. See below.
--    Francois Perrad, for his MessagePack module for Lua (https://github.com/fperrad/lua-MessagePack). See below.
--    Takatoshi Kondo and several other contributors, for their MessagePack code for C/C++ (https://github.com/msgpack/msgpack-c). See below.
--    The people behind the MessagePack code for Java (https://github.com/msgpack/msgpack-java). See below.
--    Bastian Bechtold, for his MessagePack code for Matlab (https://github.com/bastibe/matlab-msgpack). See below.
--    Kim Alvefur, for his CBOR code for Lua (https://www.zash.se/lua-cbor.html). See below.
--    Federico Ferri for creating a whole series of plugins for CoppeliaSim.
--    Stephen James (Imperial College London) for his PyRep toolkit for robot learning research (https://github.com/stepjam/PyRep), and his OpenGL3 external renderer plugin (https://github.com/stepjam/simExtOpenGL3Renderer)
--    Emanuel Eichhammer, for his QCustomPlot used in the custom UI plugin. See below.
--    Benjamin Navarro, for his code in the remote API, which enables shared memory communication instead of socket communication.
--    Following people for noticing bugs, reporting problems, suggesting solutions or new ideas, providing patches, code improvements, or simply helping out: Guillermo Presti, Matthias Fueller, Paul Fudal, Matthieu Lapeyre, Alberto Fanjul, Laurens Philippo, Vadim Liventsev, Kirill Makukhin, Patrick Bouffard, Pouya Mohammadi, Luca Marchionni, Barrett Ames, Arnaud Leleve, Geerten Doornenbal, Nikolaus Wittenstein, Ayberk Ozgur, Qi Wang, Giordano, Karl Robillard, Brian Yeomans, Kiyoshi Irie, Ulrich Schwesinger, Peter Macicka, Inkyu Sa, David Butterworth, Marco Cognetti, Xinyu Zhang, Jaqueline Gallardo, Serkan ÇIÇEK, Taehoon Koo, He Tao, Yusuke Ishizawa, Billy Newman, Rüdiger Dehmel, Roberto Marino, Renaud Detry, Roband, Hendrik Wiese, Matthias Schindler, George Moustris, Marco Bellaccini, Klaus Raizer, Paulo Gurgel, Stéphane Magnenat, Philipp Krüsi, Pascal Gohl, Gianpaolo Gonnelli, Felix Herrmann, Edgar Virga, Josep Tormo Costa, Gaël Ecorchard, Massimo Cefalo, Marc Durvaux, Robert Lang, Alexander Rietzler, Matt Derry, Arne Hitzmann, Sergi Foix, Daniel Morberg, Andreas Kuhner, Gerold Huber, Danilo Vasconcellos Vargas, Spencer Krause, Daniel Kuhner, Filip Jares, Luigi Ferri, Michaela Richter, Daniel Lechner, Sven Knüppel, Steve Nguyen, Jonas Sperling, Roberto Guzman, James Besancon, Andrew Vardy, Bipeen Acharya, Fred Gisa, Simon D. Levy, Leopoldo Armesto, Rodrigo Moreno Garcia, Hanna Kurniawati, Dimitri Klimenko, Joshua Mun Song, Vinay Yadav, Thomas Estier, Matthias Imle, José Rosado, Soner Ulun, Reza Mahjourian, Ben Allan, Riccardo Spica, Giovanni Claudio, Guenter Schreiber, Antoine Rennuit, Francois Conti, Sébastien Granges, Patrick Helmer, Eva Alves Costa, Lucian Cucu, Sigurd Villumsen, Andrea Censi, Pierre Rouanet, Leander Hille, Christoph Hügle, William Harrison, Scott Drew Pendleton, Jan Dentler, Raimund Krenmüller, Anuraj Rajendraprakash, Ilya Nemihin, Ángel Luis Jiménez García, Leander Hille, Pierre Rouanet, Kenichi Hara, Ilya Nemihin, Federico Ferri, Michael Michalik, Martin Pecka, Nicola Piccinelli, Kshitij Tiwari, Victor Gomez, Parker Owan, Yuki Suga, Muhammad Umer Huzaifa, Marshall Floyd, Augusto Gandia, Pierre Jacquot, Gurvan Le Bleis, Andreu Vidal, Nicola Di Pol, Tobias Groll, Wu Xiaojun, Karol Mocniak, Ana Lucia, Ricardo Azambuja, Anto Ronson, Graeme Neff Wilson, Minson Lee, Tiago Malheiro, Andrew Hundt, Ahmed Yacine, Matthias Ploner, Indranil Sur, Sung Kyun Kim, Rik Timmers, Matthew Veres, Korolyov Alexei, Daniel Angelov, Mohammed Talha, Bartolomeo Della Corte, Scott Hissam, Mark Fink, Hao Wang, Matias Nitsche, Ndivhuwo Makondo, Yu Zhang, DeKita G. Moon, Paul Santiago Tumbaco Casa, Tobias Benz, Rodrigo Moreno Garcia, Arjun Narayanan, Sven Schweigler, Nicola Battilani, Mark Edmonds, Benno Timmermann, Cándido Otero Moreira, Justin Yim, Allen Zhu, Leo Koppel, Ravi Prakash Joshi, Sina Radmard, Sai Vemprala, Waleed El-Badry, James Barger, Gonzalo Casas, Metehan Doyran, Arif Rahman, Jason Cachrane, Steffen Hemer, Fangyi Zhang, Filipe Rocha, virgile Daugé, Riccardo Spica, Florian Golemo, Kevin M. Lynch, Frank C. Park, Jacob Huesman, Matthew Veres, Cándido Otero, Leon Masopust, Michael Tong, Zhengxing Yang, Lenka Pitonakova, Thomas Gurriet, Hervé Frezza-Buet, Justus Rijke, Stefan Müller, Julien Lechalupe, Tristan Gahler, Robert Peck, William Jones, Benjamin Erdemann, Boris Bogaerts, Ulrich Viereck, Andrei Florea, Catalin Buiu, Joachim Haensel, Julian Mayer, Jacob Smith, Mohsen Moradi Dalvand, Simon Birrell, Mathias Thor, Jedrzej Orbik, Liu Dong, Mark Hartenstein, Alexander Oliva, Claudio Gaz, Simon Birrell, Sahil Sharma, Adrian Schoisengeier, Rémi Lux, Kilian Freitag, Maël Hörz, Jakub Turaj, Rieky Barady, Jian Ye, Jaime Boal, Pável Axel Mc Campos Peña, Patrick Gruener, Thomas Wilmotte, Lorenzo Romanini, Johan Relefors, Pablo Bustos, Sonny Tarbouriech, Aleksander Sil, Arturs Paugurs, Wei Wei, David Page, Leopoldo Armesto, Ayush Patel, Cameron Kabacinski. We know we forgot many many people, also significant ones... please let us know!
+-	Nobuto Matsuhira (Toshiba Corporate R&D center), for the enormous support, belief in me, and kindness he always showed me
+-	Fumio Ozaki (Toshiba Corporate R&D center), for the patience, trust and freedom he gave me
+-	Hoimin Jeong (Cubictek Co. Ltd), for his support and belief in me even in difficult situations
+-	The Lua development team (PUC-Rio, www.lua.org), for the free Lua interpreter they provide. See below.
+-	Nokia corporation, the Qt GUI Toolkit development team and all other contributors, for the Qt GUI Toolkit library they provide. See below.
+-	Digia Plc and/or its subsidiary(-ies), and all other contributors, for the Qt Property Browser they provide. See below.
+-	Antonio Escano Scuri and Mark Stroetzel Glasberg for the free WebBook framework they provide. See below.
+-	Diego Nehab (http://w3.impa.br/~diego/software/luasocket/home.html), for the free LuaSocket extension library. See below.
+-	Erwin Coumans (http://www.bulletphysics.com), for the free physics library he provides. See below.
+-	Russel L. Smith (http://www.ode.org), for the free physics library he provides. See below.
+- 	Daniel Fiser for his collision routines (libccd, used with ODE). See below.
+-	Pierre Terdiman for his collision routines (OPCODE, used with ODE).
+-	Francisco Leon Najera for his collision routines (GIMPACT, used with Bullet). See below.
+-   The people and community behind the Open Motion Planning Library (OMPL, http://ompl.kavrakilab.org). <a href="#ompl">See the license</a>.</li>
+-	Khaled Mamou, for the excellent convex decomposition routines he provides. See below.
+-	Brad Barber, for the efficient Qhull routines he provides. See below.
+-	François Conti, for the CHAI3D library he provides. See below.
+-	The Scintilla development team (www.scintilla.org), for the free source code editing component they provide. The Scintilla library is used via commercial QScintilla (www.riverbankcomputing.com).
+-	Lee Thomason, for his nice and compact tinyxml routines. See below.
+-	The developers of the lib3ds library (www.lib3ds.org) for the free 3DS importer they provide. See below.
+-	Marcus Geelnard for the Basic Compression Library he provides (http://bcl.comli.eu/home-en.html). See below.
+-	Martin Courchesne and SimWat for the initial Vortex plugin for CoppeliaSim they provided.
+-   CM Labs for the free version of their Vortex physics engine (Vortex Studio), used in CoppeliaSim's Vortex plugin.
+-	Sean Barrett for his image loading routines he provides.
+-	Jari Komppa for the ESCAPI library that is wrapped in the webcam plugin for CoppeliaSim.
+-	Julio Jerez and Alain Suero, for the Newton plugin for CoppeliaSim they provide. See below.
+-	René Nyffenegger, for the base64 source code he provides. See below.
+-	The programming community on www.gamedev.net and www.codeproject.com for the many invaluable advices, tips and code snippets.
+- 	The developers of the FFmpeg library (http://www.ffmpeg.org) and Andrew Voznytsa who wrote a library for CoppeliaSim that offers video compression functionality based on FFmpeg. See below.
+-	The Computer Graphics Group at RWTH Aachen, who developed the OpenMesh library (http://www.openmesh.org). The library is used in the CoppeliaSim plugin located in folder programming/simExtOpenMesh. See below.
+-   The team behind the Assimp library (http://www.assimp.org). The library is used in the CoppeliaSim plugin simExtAssimp. See below.
+-	Torsten Kroeger and Reflexxes GmbH, for providing their Reflexxes Motion Library type IV as a CoppeliaSim plugin. See below.
+-	Chris Hecker for his mass properties calculation algorithm. See below.
+-	Christian Dippel, my cousin, who helped me in many ways (CAD models, flyer preparation, etc.)
+-	Lyall Randell who not only gave me permission to use his CAD models, but also created many additional ones especially for CoppeliaSim.
+-	Eric Rohmer who is a thorough CoppeliaSim tester and an “idea machine”. He is also the creator of several models and plugins for CoppeliaSim (e.g. simExtWii or simExtJoystick).
+-	Svetlin Penkov for creating a first ROS plugin, and for being always available for ROS-related questions.
+-	Ignacio Tartavull for creating a first URDF plugin, and for being extremely helpful at the right time. 
+-	Maciej Szymanski, Ibrahim Abd Elkader, Mahendra Koteshwar and Asanka Wickramasinghe for various tasks in relation with CoppeliaSim porting and remote Api bindings
+-	Julien Tharin for various tasks in relation with CoppeliaSim porting
+-	Preben Hjornet for creating precise simulation models of extremely complex robots
+-	"gl.tter" for the WiiYourself! wiimote code (http://gl.tter.org).
+-	The developers behind the various elements around the kinect (OpenNI, NITE, etc.). The application that allows CoppeliaSim to access skeleton data from a kinect device is courtesy of Eric Rohmer, and based on an OpenNI code. See below.
+-	Alex Doumanoglou for writing the Collada importer/exporter plugin.
+-	Cedric Pradalier for extending the ROS interface with useful publisher/subscriber types.
+-	Diego Daniel Santiago for writing a shared memory communication plugin.
+-	The developers of the POV-Ray raytracer, Persistence of Vision Raytracer Pty. Ltd. POV-Ray uses the GNU AFFERO GENERAL PUBLIC LICENSE, a copy of which is included in the software package.
+-   The developers of CGAL library (http://www.cgal.org/), which is used by the simExtSurfaceReconstruction plugin. See below.
+-   All the developers behind the OpenCV library, which is used by the simExtImage plugin. See below.
+-	Mike Pall for his LuaJIT (Lua Just-in-Time Compiler). See below.
+-   David Heiko Kolf, for his JSON module for Lua. See below.
+-   Francois Perrad, for his MessagePack module for Lua (https://github.com/fperrad/lua-MessagePack). See below.
+-   Takatoshi Kondo and several other contributors, for their MessagePack code for C/C++ (https://github.com/msgpack/msgpack-c). See below.
+-   The people behind the MessagePack code for Java (https://github.com/msgpack/msgpack-java). See below.
+-   Bastian Bechtold, for his MessagePack code for Matlab (https://github.com/bastibe/matlab-msgpack). See below.
+-   Kim Alvefur, for his CBOR code for Lua (https://www.zash.se/lua-cbor.html). See below.
+-	Federico Ferri for creating a whole series of plugins for CoppeliaSim.
+-   Stephen James (Imperial College London) for his PyRep toolkit for robot learning research (https://github.com/stepjam/PyRep), and his OpenGL3 external renderer plugin (https://github.com/stepjam/simExtOpenGL3Renderer)
+-   Emanuel Eichhammer, for his QCustomPlot used in the custom UI plugin. See below.
+-   Benjamin Navarro, for his code in the remote API, which enables shared memory communication instead of socket communication.
+-	Following people for noticing bugs, reporting problems, suggesting solutions or new ideas, providing patches, code improvements, or simply helping out: Guillermo Presti, Matthias Fueller, Paul Fudal, Matthieu Lapeyre, Alberto Fanjul, Laurens Philippo, Vadim Liventsev, Kirill Makukhin, Patrick Bouffard, Pouya Mohammadi, Luca Marchionni, Barrett Ames, Arnaud Leleve, Geerten Doornenbal, Nikolaus Wittenstein, Ayberk Ozgur, Qi Wang, Giordano, Karl Robillard, Brian Yeomans, Kiyoshi Irie, Ulrich Schwesinger, Peter Macicka, Inkyu Sa, David Butterworth, Marco Cognetti, Xinyu Zhang, Jaqueline Gallardo, Serkan ÇIÇEK, Taehoon Koo, He Tao, Yusuke Ishizawa, Billy Newman, Rüdiger Dehmel, Roberto Marino, Renaud Detry, Roband, Hendrik Wiese, Matthias Schindler, George Moustris, Marco Bellaccini, Klaus Raizer, Paulo Gurgel, Stéphane Magnenat, Philipp Krüsi, Pascal Gohl, Gianpaolo Gonnelli, Felix Herrmann, Edgar Virga, Josep Tormo Costa, Gaël Ecorchard, Massimo Cefalo, Marc Durvaux, Robert Lang, Alexander Rietzler, Matt Derry, Arne Hitzmann, Sergi Foix, Daniel Morberg, Andreas Kuhner, Gerold Huber, Danilo Vasconcellos Vargas, Spencer Krause, Daniel Kuhner, Filip Jares, Luigi Ferri, Michaela Richter, Daniel Lechner, Sven Knüppel, Steve Nguyen, Jonas Sperling, Roberto Guzman, James Besancon, Andrew Vardy, Bipeen Acharya, Fred Gisa, Simon D. Levy, Leopoldo Armesto, Rodrigo Moreno Garcia, Hanna Kurniawati, Dimitri Klimenko, Joshua Mun Song, Vinay Yadav, Thomas Estier, Matthias Imle, José Rosado, Soner Ulun, Reza Mahjourian, Ben Allan, Riccardo Spica, Giovanni Claudio, Guenter Schreiber, Antoine Rennuit, Francois Conti, Sébastien Granges, Patrick Helmer, Eva Alves Costa, Lucian Cucu, Sigurd Villumsen, Andrea Censi, Pierre Rouanet, Leander Hille, Christoph Hügle, William Harrison, Scott Drew Pendleton, Jan Dentler, Raimund Krenmüller, Anuraj Rajendraprakash, Ilya Nemihin, Ángel Luis Jiménez García, Leander Hille, Pierre Rouanet, Kenichi Hara, Ilya Nemihin, Federico Ferri, Michael Michalik, Martin Pecka, Nicola Piccinelli, Kshitij Tiwari, Victor Gomez, Parker Owan, Yuki Suga, Muhammad Umer Huzaifa, Marshall Floyd, Augusto Gandia, Pierre Jacquot, Gurvan Le Bleis, Andreu Vidal, Nicola Di Pol, Tobias Groll, Wu Xiaojun, Karol Mocniak, Ana Lucia, Ricardo Azambuja, Anto Ronson, Graeme Neff Wilson, Minson Lee, Tiago Malheiro, Andrew Hundt, Ahmed Yacine, Matthias Ploner, Indranil Sur, Sung Kyun Kim, Rik Timmers, Matthew Veres, Korolyov Alexei, Daniel Angelov, Mohammed Talha, Bartolomeo Della Corte, Scott Hissam, Mark Fink, Hao Wang, Matias Nitsche, Ndivhuwo Makondo, Yu Zhang, DeKita G. Moon, Paul Santiago Tumbaco Casa, Tobias Benz, Rodrigo Moreno Garcia, Arjun Narayanan, Sven Schweigler, Nicola Battilani, Mark Edmonds, Benno Timmermann, Cándido Otero Moreira, Justin Yim, Allen Zhu, Leo Koppel, Ravi Prakash Joshi, Sina Radmard, Sai Vemprala, Waleed El-Badry, James Barger, Gonzalo Casas, Metehan Doyran, Arif Rahman, Jason Cachrane, Steffen Hemer, Fangyi Zhang, Filipe Rocha, virgile Daugé, Riccardo Spica, Florian Golemo, Kevin M. Lynch, Frank C. Park, Jacob Huesman, Matthew Veres, Cándido Otero, Leon Masopust, Michael Tong, Zhengxing Yang, Lenka Pitonakova, Thomas Gurriet, Hervé Frezza-Buet, Justus Rijke, Stefan Müller, Julien Lechalupe, Tristan Gahler, Robert Peck, William Jones, Benjamin Erdemann, Boris Bogaerts, Ulrich Viereck, Andrei Florea, Catalin Buiu, Joachim Haensel, Julian Mayer, Jacob Smith, Mohsen Moradi Dalvand, Simon Birrell, Mathias Thor, Jedrzej Orbik, Liu Dong, Mark Hartenstein, Alexander Oliva, Claudio Gaz, Simon Birrell, Sahil Sharma, Adrian Schoisengeier, Rémi Lux, Kilian Freitag, Maël Hörz, Jakub Turaj, Rieky Barady, Jian Ye, Jaime Boal, Pável Axel Mc Campos Peña. We know we forgot many many people, also significant ones... please let us know!
 
 I also wish to thank following people for the inspiration they provided in various fields through their publications, books or other means:
 
--    J. J. Kuffner Jr., S.M. LaValle, L. Sciavicco, B. Siciliano, S. Gottschalk, M. C. Lin, D. Manocha, T. Akenin-Moeller
+-	J. J. Kuffner Jr., S.M. LaValle, L. Sciavicco, B. Siciliano, S. Gottschalk, M. C. Lin, D. Manocha, T. Akenin-Moeller
 
 Finally I am really grateful to all the people and organizations who/that were kind enough to let me use their created CAD designs and models:
 
--    ABB. There is however no link between ABB and CoppeliaSim.
--    KUKA Laboratories GmbH
--    SICK AG
--    Hibot
--    K-Team
--    Cubictek
--    Neuronics
--    Aldebaran
--    IniLabs
--    Robotiq
--    Kinova Robotics
--    Rethink Robotics
--    Trossen Robotics
--    Adept Technology
--    Force Dimension
--    On Robot ApS
--    EVOL
--    Bejade Choy, Farkas Gergo, Barry van de Laar, Lucia Teglas, Casper Christensen, Andrew Alexander, Kazuyuki Shigeto, Joost a.k.a. J-m@n, Bjorn Kilen, Andres San Millan Rodriguez, Mey Lean Kronemann, Marco Cognetti, Tesuno Tokisin.
+-	ABB. There is however no link between ABB and CoppeliaSim.
+-	KUKA Laboratories GmbH
+-	SICK AG
+-	Hibot
+-	K-Team
+-	Cubictek
+-	Neuronics
+- 	Aldebaran
+-   IniLabs
+-	Robotiq
+-	Kinova Robotics
+-	Rethink Robotics
+-	Trossen Robotics
+-	Adept Technology
+-	Force Dimension
+-	On Robot ApS
+-	EVOL
+-	Bejade Choy, Farkas Gergo, Barry van de Laar, Lucia Teglas, Casper Christensen, Andrew Alexander, Kazuyuki Shigeto, Joost a.k.a. J-m@n, Bjorn Kilen, Andres San Millan Rodriguez, Mey Lean Kronemann, Marco Cognetti, Tesuno Tokisin.
 
 
 
@@ -376,9 +376,9 @@ This software is provided ’as-is’, without any express or implied warranty. In n
 
 Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
 
-1.    The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
-2.    Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
-3.    This notice may not be removed or altered from any source distribution.
+1.	The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+2.	Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+3.	This notice may not be removed or altered from any source distribution.
  
 
  

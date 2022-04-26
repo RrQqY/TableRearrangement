@@ -136,7 +136,7 @@ handlePartAtLocation=function(h)
     sim.removeObject(h)
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     local data=sim.readCustomDataBlock(model,simBWF.modelTags.CONVEYOR)
     data=sim.unpackTable(data)
@@ -165,7 +165,7 @@ function sysCall_init()
     allProducedParts={} -- the dynamic parts (boxes)
 end 
 
-function sysCall_actuation()
+if (sim_call_type==sim.childscriptcall_actuation) then
     local t=sim.getSimulationTime()
     local dt=sim.getSimulationTimeStep()
     if movementUnderway then

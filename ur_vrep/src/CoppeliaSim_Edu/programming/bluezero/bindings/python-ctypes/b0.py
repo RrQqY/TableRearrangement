@@ -31,7 +31,6 @@ def _(n, ret, *args):
     globals()[n] = lambda *args2: _dec(globals()['_' + n](*[_enc(arg, t) for t, arg in zip(args, args2)]), ret)
 
 _("b0_init", ct.c_void_p, ct.POINTER(ct.c_int), ct.POINTER(ct.c_char_p))
-_("b0_is_initialized", ct.c_int)
 _("b0_buffer_new", ct.c_void_p, ct.c_size_t)
 _("b0_buffer_delete", None, ct.c_void_p)
 _("b0_node_new", ct.c_void_p, str)
@@ -91,14 +90,9 @@ _("b0_service_server_log", None, ct.c_void_p, ct.c_int, str)
 _("b0_service_server_set_option", ct.c_void_p, ct.c_int, ct.c_int)
 
 def init():
-    argc = ct.c_int(1)
-    argc_p = ct.byref(argc)
-    argv = ct.c_char_p(b'b0python')
-    argv_p = ct.byref(argv)
-    b0_init(argc_p, argv_p)
-
-def is_initialized():
-    return bool(b0_is_initialized())
+    argc = 1
+    argv = ['b0python']
+    b0_init(argc, argv)
 
 class Node:
     def __init__(self, name='node'):

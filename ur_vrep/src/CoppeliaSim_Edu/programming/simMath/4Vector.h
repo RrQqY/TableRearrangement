@@ -45,17 +45,17 @@ public:
         data[2]=d[2];
         data[3]=d[3];
     }
-    inline simMathReal& operator() (size_t i)
+    inline simMathReal& operator() (unsigned i)
     {
         return(data[i]);
     }
-    inline const simMathReal& operator() (size_t i) const
+    inline const simMathReal& operator() (unsigned i) const
     {
         return(data[i]);
     }
     inline void normalize()
     {
-        simMathReal l=sqrt(data[0]*data[0]+data[1]*data[1]+data[2]*data[2]+data[3]*data[3]);
+        simMathReal l=sqrtf(data[0]*data[0]+data[1]*data[1]+data[2]*data[2]+data[3]*data[3]);
         data[0]/=l;
         data[1]/=l;
         data[2]/=l;
@@ -63,17 +63,17 @@ public:
     }
     inline void clear()
     {
-        data[0]=simZero;
-        data[1]=simZero;
-        data[2]=simZero;
-        data[3]=simZero;
+        data[0]=0.0f;
+        data[1]=0.0f;
+        data[2]=0.0f;
+        data[3]=0.0f;
     }
     inline void setIdentity()
     {
-        data[0]=simOne;
-        data[1]=simZero;
-        data[2]=simZero;
-        data[3]=simZero;
+        data[0]=1.0f;
+        data[1]=0.0f;
+        data[2]=0.0f;
+        data[3]=0.0f;
     }
     inline C4Vector getInverse() const
     {
@@ -125,14 +125,14 @@ public:
         //  retV.normalize(); // NOOOOOOO!!!!!! We might compute the rotation of a vector which should be (q*v*qI).normalize and not q*((v*qi).normalize).normalize !!
         return(retV);
     }
-    inline C3Vector getAxis(size_t index) const
+    inline C3Vector getAxis(int index) const
     {
         C3X3Matrix m=getMatrix();
         return(m.axis[index]);
     }
     inline C3Vector operator* (const C3Vector& v) const
     { // Rotation of a vector.
-        C4Vector tmpV(simOne,v(0),v(1),v(2));
+        C4Vector tmpV(1.0f,v(0),v(1),v(2));
         tmpV=(*this)*(tmpV*getInverse());
         return(C3Vector(tmpV(1),tmpV(2),tmpV(3)));
     }
@@ -158,15 +158,15 @@ public:
         simMathReal zz=data[3]*data[3];
         simMathReal zw=data[3]*data[0];
 
-        retM(0,0)=simOne-simTwo*(yy+zz);
-        retM(0,1)=simTwo*(xy-zw);
-        retM(0,2)=simTwo*(xz+yw);
-        retM(1,0)=simTwo*(xy+zw);
-        retM(1,1)=simOne-simTwo*(xx+zz);
-        retM(1,2)=simTwo*(yz-xw);
-        retM(2,0)=simTwo*(xz-yw);
-        retM(2,1)=simTwo*(yz+xw);
-        retM(2,2)=simOne-simTwo*(xx+yy);
+        retM(0,0)=1.0f-2.0f*(yy+zz);
+        retM(0,1)=2.0f*(xy-zw);
+        retM(0,2)=2.0f*(xz+yw);
+        retM(1,0)=2.0f*(xy+zw);
+        retM(1,1)=1.0f-2.0f*(xx+zz);
+        retM(1,2)=2.0f*(yz-xw);
+        retM(2,0)=2.0f*(xz-yw);
+        retM(2,1)=2.0f*(yz+xw);
+        retM(2,2)=1.0f-2.0f*(xx+yy);
         return(retM);
     }
     inline void operator/= (simMathReal d)

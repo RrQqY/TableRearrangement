@@ -41,11 +41,11 @@ public:
         M[1][0].setInternalData(d+18);
         M[1][1].setInternalData(d+27);
     }
-    inline simMathReal& operator() (size_t i,size_t j)
+    inline simMathReal& operator() (unsigned i,unsigned j)
     {
         return(M[i/3][j/3](i%3,j%3));
     }
-    inline const simMathReal& operator() (size_t i,size_t j) const
+    inline const simMathReal& operator() (unsigned i,unsigned j) const
     {
         return(M[i/3][j/3](i%3,j%3));
     }

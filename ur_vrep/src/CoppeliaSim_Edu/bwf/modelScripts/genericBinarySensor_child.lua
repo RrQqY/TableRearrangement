@@ -80,7 +80,7 @@ checkSensor=function()
     return false
 end
 
-function sysCall_init()
+if (sim_call_type==sim.childscriptcall_initialization) then
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     sensor=sim.getObjectHandle('genericBinarySensor_sensor')
     local data=sim.readCustomDataBlock(model,'XYZ_BINARYSENSOR_INFO')
@@ -99,7 +99,7 @@ function sysCall_init()
     incrementer=0
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.childscriptcall_sensing) then
     local t=sim.getSimulationTime()
     local dt=sim.getSimulationTimeStep()
     if isEnabled() then
@@ -143,6 +143,6 @@ function sysCall_sensing()
     updateStatisticsDialog()
 end
 
-function sysCall_cleanup()
+if (sim_call_type==sim.childscriptcall_cleanup) then
         sim.setShapeColor(model,nil,sim.colorcomponent_ambient_diffuse,{0,0,1})
 end

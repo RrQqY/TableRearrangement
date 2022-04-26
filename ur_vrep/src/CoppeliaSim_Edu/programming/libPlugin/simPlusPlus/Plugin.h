@@ -1,17 +1,17 @@
 #ifndef SIMPLUSPLUS_PLUGIN_H_INCLUDED
 #define SIMPLUSPLUS_PLUGIN_H_INCLUDED
 
-#if __cplusplus <= 199711L
-    #error simPlusPlus needs at least a C++11 compliant compiler
-#endif
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include <boost/format.hpp>
 
 #include "simLib.h"
+
+// backwards compatibility for this constant:
+#ifndef SIM_PROGRAM_FULL_VERSION_NB
+#define SIM_PROGRAM_FULL_VERSION_NB ((SIM_PROGRAM_VERSION_NB) * 100 + (SIM_PROGRAM_REVISION_NB))
+#endif // SIM_PROGRAM_FULL_VERSION_NB
 
 #ifdef _WIN32
 	#define SIM_DLLEXPORT extern "C" __declspec(dllexport)
@@ -57,17 +57,10 @@ namespace sim
     class Plugin
     {
     public:
-        void setName(const std::string &name);
-        std::string name() const;
-        void setExtVersion(const std::string &s);
-        void setExtVersion(int i);
-        void setBuildDate(const std::string &s);
-        void setVerbosity(int i);
-        int getVerbosity();
         void init();
         virtual void onStart();
         virtual void onEnd();
-        virtual void * onMessage(int message, int *auxData, void *customData, int *replyData) final;
+        virtual void * onMessage(int message, int *auxData, void *customData, int *replyData);
         virtual LIBRARY loadSimLibrary();
 
         virtual void onInstancePass(const InstancePassFlags &flags, bool first);
@@ -120,7 +113,6 @@ namespace sim
 
     private:
         bool firstInstancePass = true;
-        std::string name_;
     };
 }
 
@@ -132,14 +124,13 @@ SIM_DLLEXPORT unsigned char simStart(void *reservedPointer, int reservedInt) \
     try \
     { \
         simPlugin = new className; \
-        simPlugin->setName(pluginName); \
         simLib = simPlugin->loadSimLibrary(); \
         simPlugin->onStart(); \
         return pluginVersion; \
     } \
     catch(std::exception &ex) \
     { \
-        simAddLog(pluginName, sim_verbosity_errors, ex.what()); \
+        std::cout << pluginName << ": " << ex.what() << std::endl; \
         return 0; \
     } \
 } \
@@ -156,7 +147,7 @@ SIM_DLLEXPORT void simEnd() \
     } \
     catch(std::exception &ex) \
     { \
-        simAddLog(pluginName, sim_verbosity_errors, ex.what()); \
+        std::cout << pluginName << ": " << ex.what() << std::endl; \
     } \
     unloadSimLibrary(simLib); \
 } \
@@ -171,7 +162,7 @@ SIM_DLLEXPORT void * simMessage(int message, int *auxiliaryData, void *customDat
     } \
     catch(std::exception &ex) \
     { \
-        simAddLog(pluginName, sim_verbosity_errors, ex.what()); \
+        std::cout << pluginName << ": " << ex.what() << std::endl; \
     } \
     return 0L; \
 }

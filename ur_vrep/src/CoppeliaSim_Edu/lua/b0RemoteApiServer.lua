@@ -264,7 +264,7 @@ end
 function AddStatusbarMessage(...)
     debugFunc("AddStatusbarMessage",...)
     local txt=...
-    return sim.addLog(sim.verbosity_msgs,txt)
+    return sim.addStatusbarMessage(txt)
 end
 
 function GetObjectPosition(...)
@@ -814,15 +814,11 @@ end
 function GetObjects(...)
     debugFunc("GetObjects",...)
     local objType=...
-    if type(objType)=='string' then
-        objType=evalStr(objType)
-    end
     local retVal={}
     local i=0
     local h=sim.getObjects(i,objType)
     while h>=0 do
-        retVal[#retVal+1]=h
-        i=i+1
+        retVal[#retVal+1]=handle
         h=sim.getObjects(i,objType)
     end
     return retVal
@@ -866,23 +862,11 @@ function GetObjectVelocity(...)
     return sim.getObjectVelocity(handle+sim.handleflag_axis)
 end
 
-function LoadModelFromFile(...)
-    debugFunc("LoadModelFromFile",...)
+function LoadModel(...)
+    debugFunc("LoadModel",...)
     local filename=...
     local s=sim.getObjectSelection()
     local h=sim.loadModel(filename)
-    sim.removeObjectFromSelection(sim.handle_all,-1);
-    if s then
-        sim.addObjectToSelection(s)
-    end
-    return h
-end
-
-function LoadModelFromBuffer(...)
-    debugFunc("LoadModelFromBuffer",...)
-    local buff=...
-    local s=sim.getObjectSelection()
-    local h=sim.loadModel(buff)
     sim.removeObjectFromSelection(sim.handle_all,-1);
     if s then
         sim.addObjectToSelection(s)
@@ -990,8 +974,9 @@ function debugFunc(funcName,...)
         if arg=='' then
             arg='none'
         end
-        local a=timeStr().." calling function '"..funcName.."' with following arguments: "..arg
-        sim.addLog(sim.verbosity_msgs,a)
+        local a=timeStr()..b0RemoteApiServerNameDebug..": calling function '"..funcName.."' with following arguments: "..arg
+        a="<font color='#4B4'>"..a.."</font>@html"
+        sim.addStatusbarMessage(a)
     end
 end
 
@@ -999,8 +984,9 @@ function PCALL(func,printErrors,...)
     local res,a,b,c,d,e,f,g,h,i,j,k=pcall(func,...)
     
     if modelData and modelData.debugLevel>=1 and (not res) and printErrors then
-        local a=string.format(timeStr().." error while calling function '%s': %s",lastFuncName,a)
-        sim.addLog(sim.verbosity_msgs,a)
+        local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": error while calling function '%s': %s",lastFuncName,a)
+        a="<font color='#a00'>"..a.."</font>@html"
+        sim.addStatusbarMessage(a)
     end
     
     return res,a,b,c,d,e,f,g,h,i,j,k
@@ -1029,8 +1015,9 @@ end
 function createNode()
     if not b0Node then
         if modelData.debugLevel>=1 then
-            local a=string.format(timeStr().." creating BlueZero node '%s' and associated publisher, subscriber and service server (on channel '%s')",modelData.nodeName,modelData.channelName)
-            sim.addLog(sim.verbosity_msgs,a)
+            local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": creating BlueZero node '%s' and associated publisher, subscriber and service server (on channel '%s')",modelData.nodeName,modelData.channelName)
+            a="<font color='#070'>"..a.."</font>@html"
+            sim.addStatusbarMessage(a)
         end
         modelData.currentNodeName=modelData.nodeName
         modelData.currentChannelName=modelData.channelName
@@ -1044,7 +1031,7 @@ function createNode()
                 ui=simUI.create(xml)
             end
             if not simB0.pingResolver() then
-                sim.addLog(sim.verbosity_msgs,"B0 Remote API: B0 resolver was not detected. Launching it from here...")
+                sim.addStatusbarMessage("<font color='#070'>B0 Remote API: B0 resolver was not detected. Launching it from here...</font>@html")
                 sim.launchExecutable('b0_resolver','',1)
                 local st=sim.getSystemTimeInMs(-1)
                 while sim.getSystemTimeInMs(st)<1000 do end
@@ -1063,7 +1050,7 @@ function createNode()
                 initStg=1
             else
                 initStg=0
-                sim.addLog(sim.verbosity_msgs,timeStr().." B0 resolver could not be launched.")
+                sim.addStatusbarMessage("<font color='#070'>"..timeStr()..b0RemoteApiServerNameDebug..": B0 resolver could not be launched.".."</font>@html")
             end
         end
 
@@ -1084,8 +1071,9 @@ end
 function destroyNode()
     if b0Node then
         if modelData.debugLevel>=1 then
-            local a=string.format(timeStr().." destroying BlueZero node '%s' and associated publisher, subscriber and service server (on channel '%s')",modelData.currentNodeName,modelData.currentChannelName)
-            sim.addLog(sim.verbosity_msgs,a)
+            local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": destroying BlueZero node '%s' and associated publisher, subscriber and service server (on channel '%s')",modelData.currentNodeName,modelData.currentChannelName)
+            a="<font color='#070'>"..a.."</font>@html"
+            sim.addStatusbarMessage(a)
         end
         modelData.currentNodeName=nil
         modelData.currentChannelName=nil
@@ -1177,8 +1165,9 @@ function sendAndSpin(calledMoment)
             local clientId=clientsToRemove[i]
             DisconnectClient(clientId)
             if modelData.debugLevel>=1 then
-                local a=string.format(timeStr().." destroyed all streaming functions for client '%s' after detection of inactivity",clientId)
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": destroyed all streaming functions for client '%s' after detection of inactivity",clientId)
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
         end
     end
@@ -1232,8 +1221,9 @@ function sendAndSpin(calledMoment)
             end
         end
         if msgCnt>0 and modelData and modelData.debugLevel>=2 then
-            local a=string.format(timeStr().." published %i message(s) to %i client(s): %s",msgCnt,clientCnt,funcs)
-            sim.addLog(sim.verbosity_msgs,a)
+            local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": published %i message(s) to %i client(s): %s",msgCnt,clientCnt,funcs)
+            a="<font color='#070'>"..a..append.."</font>@html"
+            sim.addStatusbarMessage(a)
         end
     end
     
@@ -1270,9 +1260,6 @@ end
 
 function hasClientReachedMaxInactivityTime(clientId)
     local val=allClients[clientId]
-    if val.maxInactivityTimeMs==0 then
-        return false
-    end
     return sim.getSystemTimeInMs(val.lastActivityTimeMs)>val.maxInactivityTimeMs
 end
 
@@ -1298,21 +1285,24 @@ function serviceServer_callback(receiveMsg)
             end
             dedicatedSubscribers[clientId][funcArgs[1]]={handle=subscr,dropMessages=funcArgs[2]}
             if modelData.debugLevel>=1 then
-                local a=string.format(timeStr().." creating dedicated subscriber for client '%s' with topic '%s'",clientId,funcArgs[1])
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": creating dedicated subscriber for client '%s' with topic '%s'",clientId,funcArgs[1])
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
         elseif funcName=='inactivityTolerance' then
             setClientMaxInactivityTime(clientId,funcArgs[1])
             if modelData.debugLevel>=2 then
-                local a=string.format(timeStr().." setting max. inactivity tolerance for client '%s'",clientId)
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": setting max. inactivity tolerance for client '%s'",clientId)
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
         else
             retVal=PACKSERVMSG(PCALL(_G[funcName],true,unpack(funcArgs)))
     --        result,data=PCALL(_G[funcName],unpack(funcArgs))
             if modelData.debugLevel>=2 then
-                local a=string.format(timeStr().." called function for client '%s': %s (service call)",clientId,receiveMsg[1][1])
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": called function for client '%s': %s (service call)",clientId,receiveMsg[1][1])
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
         end
     end
@@ -1332,8 +1322,9 @@ function handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs)
         local val=allPublishers[clientId][topic]
         val.cmds[#val.cmds+1]={func=funcName,args=funcArgs,triggerIntervalCnt=1}
         if modelData.debugLevel>=1 then
-            local a=string.format(timeStr().." registering streaming function '%s' for client '%s' on topic '%s' (default publisher)",funcName,clientId,topic)
-            sim.addLog(sim.verbosity_msgs,a)
+            local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": registering streaming function '%s' for client '%s' on topic '%s' (default publisher)",funcName,clientId,topic)
+            a="<font color='#070'>"..a.."</font>@html"
+            sim.addStatusbarMessage(a)
         end
     elseif task==4 then
         -- We want to register a command to be constantly executed on a dedicated publisher:
@@ -1342,8 +1333,9 @@ function handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs)
             allCmds=val.cmds
             allCmds[#allCmds+1]={func=funcName,args=funcArgs,triggerIntervalCnt=1}
             if modelData.debugLevel>=1 then
-                local a=string.format(timeStr().." registering streaming function '%s' for client '%s' on topic '%s' (dedicated publisher)",funcName,clientId,topic)
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": registering streaming function '%s' for client '%s' on topic '%s' (dedicated publisher)",funcName,clientId,topic)
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
         end
     else
@@ -1358,8 +1350,9 @@ function handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs)
             local trigInterv=funcArgs[2]
             allPublishers[clientId][targetTopic]={handle=pub,cmds={},triggerInterval=trigInterv}
             if modelData.debugLevel>=1 then
-                local a=string.format(timeStr().." creating dedicated publisher for client '%s' with topic '%s'",clientId,targetTopic)
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": creating dedicated publisher for client '%s' with topic '%s'",clientId,targetTopic)
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
             return true
         elseif funcName=='setDefaultPublisherPubInterval' then
@@ -1372,8 +1365,9 @@ function handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs)
                 allPublishers[clientId][targetTopic]={handle=defaultPublisher,cmds={},triggerInterval=trigInterv}
             end
             if modelData.debugLevel>=2 then
-                local a=string.format(timeStr().." setting default publisher interval for client '%s' with topic '%s'",clientId,targetTopic)
-                sim.addLog(sim.verbosity_msgs,a)
+                local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": setting default publisher interval for client '%s' with topic '%s'",clientId,targetTopic)
+                a="<font color='#070'>"..a.."</font>@html"
+                sim.addStatusbarMessage(a)
             end
             return true
         elseif funcName=='stopDefaultPublisher' or funcName=='stopPublisher' then
@@ -1401,8 +1395,9 @@ function handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs)
                                 cm=cm..cmds[i].func
                             end
                         end
-                        local a=string.format(timeStr().." stopping %s publisher for client '%s' with topic '%s'. All Streaming functions on that topic will be unregistered%s",nn,clientId,topic,cm)
-                        sim.addLog(sim.verbosity_msgs,a)
+                        local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": stopping %s publisher for client '%s' with topic '%s'. All Streaming functions on that topic will be unregistered%s",nn,clientId,topic,cm)
+                        a="<font color='#070'>"..a.."</font>@html"
+                        sim.addStatusbarMessage(a)
                     end
                 end
             end
@@ -1415,8 +1410,9 @@ function handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs)
                     simB0.subscriberDestroy(dedicatedSubscribers[clientId][topic].handle)
                     dedicatedSubscribers[clientId][topic]=nil
                     if modelData.debugLevel>=1 then
-                        local a=string.format(timeStr().." stopping dedicated subscriber for client '%s' with topic '%s'",clientId,topic)
-                        sim.addLog(sim.verbosity_msgs,a)
+                        local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": stopping dedicated subscriber for client '%s' with topic '%s'",clientId,topic)
+                        a="<font color='#070'>"..a.."</font>@html"
+                        sim.addStatusbarMessage(a)
                     end
                 end
             end
@@ -1440,8 +1436,9 @@ function defaultSubscriber_callback(msg)
     if not handlePublisherSetupFunctions(task,funcName,clientId,topic,funcArgs) then
         PCALL(_G[funcName],true,unpack(funcArgs))
         if modelData.debugLevel>=2 then
-            local a=string.format(timeStr().." called function for client '%s': %s (default subscriber)",clientId,funcName)
-            sim.addLog(sim.verbosity_msgs,a)
+            local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": called function for client '%s': %s (default subscriber)",clientId,funcName)
+            a="<font color='#070'>"..a.."</font>@html"
+            sim.addStatusbarMessage(a)
         end
     end
 end    
@@ -1457,8 +1454,9 @@ function dedicatedSubscriber_callback(msg)
     -- We simply want to execute the function and forget (no return)
     PCALL(_G[funcName],true,unpack(funcArgs))
     if modelData.debugLevel>=2 then
-        local a=string.format(timeStr().." called function for client '%s': %s (dedicated subscriber)",clientId,funcName)
-        sim.addLog(sim.verbosity_msgs,a)
+        local a=string.format(timeStr()..b0RemoteApiServerNameDebug..": called function for client '%s': %s (dedicated subscriber)",clientId,funcName)
+        a="<font color='#070'>"..a.."</font>@html"
+        sim.addStatusbarMessage(a)
     end
 end    
 
@@ -1598,10 +1596,12 @@ function sysCall_init()
         -- We are running this script via an Add-On script
         
         model=-1
+        b0RemoteApiServerNameDebug='B0 Remote API (add-on)'
         modelData={nodeName='b0RemoteApi_CoppeliaSim-addOn',channelName='b0RemoteApiAddOn',debugLevel=1,packStrAsBin=false,duringSimulationOnly=false}
     else
         -- We are probably running this script via a customization script
         modelTag='b0-remoteApi'
+        b0RemoteApiServerNameDebug='B0 Remote API'
 --        sim.writeCustomDataBlock(model,modelTag,sim.packTable({nodeName='b0RemoteApi_CoppeliaSim',channelName='b0RemoteApi',debugLevel=1,packStrAsBin=false,duringSimulationOnly=false}))
         
         local objs=sim.getObjectsWithTag(modelTag,true)

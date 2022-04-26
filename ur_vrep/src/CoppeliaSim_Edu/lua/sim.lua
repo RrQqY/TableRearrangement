@@ -5,37 +5,6 @@ printToConsole=print -- will be overwritten further down
 
 -- Various useful functions:
 ----------------------------------------------------------
-function sim.yawPitchRollToAlphaBetaGamma(yawAngle,pitchAngle,rollAngle)
-    local Rx=sim.buildMatrix({0,0,0},{rollAngle,0,0})
-    local Ry=sim.buildMatrix({0,0,0},{0,pitchAngle,0})
-    local Rz=sim.buildMatrix({0,0,0},{0,0,yawAngle})
-    local m=sim.multiplyMatrices(Ry,Rx)
-    m=sim.multiplyMatrices(Rz,m)
-    local alphaBetaGamma=sim.getEulerAnglesFromMatrix(m)
-    local alpha=alphaBetaGamma[1]
-    local beta=alphaBetaGamma[2]
-    local gamma=alphaBetaGamma[3]
-    return alpha,beta,gamma
-end
-
-function sim.alphaBetaGammaToYawPitchRoll(alpha,beta,gamma)
-    local m=sim.buildMatrix({0,0,0},{alpha,beta,gamma})
-    local v=m[9]
-    if v>1 then v=1 end
-    if v<-1 then v=-1 end
-    local pitchAngle=math.asin(-v)
-    local yawAngle,rollAngle
-    if math.abs(v)<0.999999 then
-        rollAngle=math.atan2(m[10],m[11])
-        yawAngle=math.atan2(m[5],m[1])
-    else
-        -- Gimbal lock
-        rollAngle=math.atan2(-m[7],m[6])
-        yawAngle=0
-    end
-    return yawAngle,pitchAngle,rollAngle
-end
-
 function sim.getObjectsWithTag(tagName,justModels)
     local retObjs={}
     local objs=sim.getObjectsInTree(sim.handle_scene)
@@ -157,9 +126,7 @@ function sim.getMatchingPersistentDataTags(pattern)
 end
 
 function print(...)
-    sim.setThreadAutomaticSwitch(false)
-    sim.addLog(sim.verbosity_scriptinfos+sim.verbosity_undecorated,getAsString(...))
-    sim.setThreadAutomaticSwitch(true)
+    sim.addStatusbarMessage(getAsString(...))
 end
 
 function getAsString(...)
@@ -289,16 +256,20 @@ function sim.displayDialog(title,mainTxt,style,modal,initTxt,titleCols,dlgCols,p
 end
 
 function sim.endDialog(dlgHandle)
-    if not sim.getBoolParameter(sim_boolparam_headless) then
-        assert(type(dlgHandle)=='number' and __HIDDEN__.dlg.openDlgs and __HIDDEN__.dlg.openDlgs[dlgHandle],"Argument 1 is not a valid dialog handle")
-        if __HIDDEN__.dlg.openDlgs[dlgHandle].state==sim.dlgret_still_open then
-            __HIDDEN__.dlg.removeUi(dlgHandle)
-        end
-        if __HIDDEN__.dlg.openDlgs[dlgHandle].ui then
-            __HIDDEN__.dlg.openDlgsUi[__HIDDEN__.dlg.openDlgs[dlgHandle].ui]=nil
-        end
-        __HIDDEN__.dlg.openDlgs[dlgHandle]=nil
+    if sim.getBoolParameter(sim_boolparam_headless) then
+        return -1
     end
+    local retVal=-1
+    assert(type(dlgHandle)=='number' and __HIDDEN__.dlg.openDlgs and __HIDDEN__.dlg.openDlgs[dlgHandle],"Argument 1 is not a valid dialog handle")
+    if __HIDDEN__.dlg.openDlgs[dlgHandle].state==sim.dlgret_still_open then
+        __HIDDEN__.dlg.removeUi(dlgHandle)
+    end
+    if __HIDDEN__.dlg.openDlgs[dlgHandle].ui then
+        __HIDDEN__.dlg.openDlgsUi[__HIDDEN__.dlg.openDlgs[dlgHandle].ui]=nil
+    end
+    __HIDDEN__.dlg.openDlgs[dlgHandle]=nil
+    retVal=0
+    return retVal
 end
 
 function sim.getDialogInput(dlgHandle)
@@ -342,16 +313,6 @@ end
 function math.randomseed2(seed)
     -- same as math.randomseed, but each script has its own generator
     sim.getRandom(seed)
-end
-
-function sim.throttle(t,f)
-    if __HIDDEN__.lastExecTime==nil then __HIDDEN__.lastExecTime={} end
-    local h=string.dump(f)
-    local now=sim.getSystemTime()
-    if __HIDDEN__.lastExecTime[h]==nil or __HIDDEN__.lastExecTime[h]+t<now then
-        f()
-        __HIDDEN__.lastExecTime[h]=now
-    end
 end
 
 function sysCallEx_beforeInstanceSwitch()
@@ -482,9 +443,6 @@ function __HIDDEN__.executeAfterLuaStateInit()
     sim.registerScriptFunction('sim.getDialogResult@sim','number result=sim.getDialogResult(number dlgHandle)')
     sim.registerScriptFunction('sim.getDialogInput@sim','string input=sim.getDialogInput(number dlgHandle)')
     sim.registerScriptFunction('sim.endDialog@sim','number result=sim.endDialog(number dlgHandle)')
-    sim.registerScriptFunction('sim.yawPitchRollToAlphaBetaGamma@sim','number alphaAngle,number betaAngle,number gammaAngle=sim.yawPitchRollToAlphaBetaGamma(\nnumber yawAngle,number pitchAngle,number rollAngle)')
-    sim.registerScriptFunction('sim.alphaBetaGammaToYawPitchRoll@sim','number yawAngle,number pitchAngle,number rollAngle=sim.alphaBetaGammaToYawPitchRoll(\nnumber alphaAngle,number betaAngle,number gammaAngle)')
-    
     
     if __initFunctions then
         for i=1,#__initFunctions,1 do
@@ -583,21 +541,27 @@ function __HIDDEN__.debug.entryFunc(info)
             simTimeStr=simTime..' '
         end
         if (debugLevel>=sim.scriptdebug_vars) or (debugLevel==sim.scriptdebug_vars_interval) then
-            local prefix='DEBUG: '..simTimeStr..' '
+            local prefix='DEBUG: '..simTimeStr..'['..scriptName..'] '
             local t=__HIDDEN__.debug.getVarChanges(prefix)
             if t then
-                sim.addLog(sim.verbosity_msgs,t)
+                t="<font color='#44B'>"..t.."</font>@html"
+                sim.addStatusbarMessage(t)
             end
         end
         if (debugLevel==sim.scriptdebug_allcalls) or (debugLevel==sim.scriptdebug_callsandvars) or ( (debugLevel==sim.scriptdebug_syscalls) and sysCall) then
-            local t='DEBUG: '..simTimeStr
+            local t='DEBUG: '..simTimeStr..'['..scriptName..']'
             if callIn then
-                t=t..' --> '
+                t=t..' --&gt; '
             else
-                t=t..' <-- '
+                t=t..' &lt;-- '
             end
             t=t..funcName..' ('..funcType..')'
-            sim.addLog(sim.verbosity_msgs,t)
+            if callIn then
+                t="<font color='#44B'>"..t.."</font>@html"
+            else
+                t="<font color='#44B'>"..t.."</font>@html"
+            end
+            sim.addStatusbarMessage(t)
         end
     end
 end

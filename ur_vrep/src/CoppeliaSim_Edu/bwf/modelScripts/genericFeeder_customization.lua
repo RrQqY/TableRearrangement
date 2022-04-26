@@ -772,7 +772,7 @@ function removeDlg1()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.customizationscriptcall_initialization) then
     dlgMainTabIndex=0
     model=sim.getObjectAssociatedWithScript(sim.handle_self)
     _MODELVERSION_=0
@@ -791,7 +791,7 @@ function sysCall_init()
     ----------------------------------------
     writeInfo(_info)
     functionalPartHolder=sim.getObjectHandle('genericFeeder_functional')
-	
+	sim.setScriptAttribute(sim.handle_self,sim.customizationscriptattribute_activeduringsimulation,true)
     updatePluginRepresentation()
     previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos=simBWF.readSessionPersistentObjectData(model,"dlgPosAndSize")
 end
@@ -805,11 +805,11 @@ showOrHideUi1IfNeeded=function()
     end
 end
 
-function sysCall_nonSimulation()
+if (sim_call_type==sim.customizationscriptcall_nonsimulation) then
     showOrHideUi1IfNeeded()
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.customizationscriptcall_simulationsensing) then
     if simJustStarted then
         updateEnabledDisabledItemsDlg1()
     end
@@ -817,11 +817,11 @@ function sysCall_sensing()
     showOrHideUi1IfNeeded()
 end
 
-function sysCall_suspend()
+if (sim_call_type==sim.customizationscriptcall_simulationpause) then
     showOrHideUi1IfNeeded()
 end
 
-function sysCall_afterSimulation()
+if (sim_call_type==sim.customizationscriptcall_firstaftersimulation) then
     updateEnabledDisabledItemsDlg1()
     sim.setObjectInt32Parameter(model,sim.objintparam_visibility_layer,1)
     local conf=readInfo()
@@ -829,7 +829,7 @@ function sysCall_afterSimulation()
     writeInfo(conf)
 end
 
-function sysCall_beforeSimulation()
+if (sim_call_type==sim.customizationscriptcall_lastbeforesimulation) then
     simJustStarted=true
     local conf=readInfo()
     conf['multiFeederTriggerCnt']=0
@@ -840,16 +840,16 @@ function sysCall_beforeSimulation()
     end
 end
 
-function sysCall_beforeInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_lastbeforeinstanceswitch) then
     removeDlg1()
     removeFromPluginRepresentation()
 end
 
-function sysCall_afterInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_firstafterinstanceswitch) then
     updatePluginRepresentation()
 end
 
-function sysCall_cleanup()
+if (sim_call_type==sim.customizationscriptcall_cleanup) then
     removeDlg1()
     removeFromPluginRepresentation()
     simBWF.writeSessionPersistentObjectData(model,"dlgPosAndSize",previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos)

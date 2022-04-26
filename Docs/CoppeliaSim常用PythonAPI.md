@@ -203,3 +203,22 @@ number returnCode=simxSetObjectPosition(number clientID,number objectHandle,numb
   - operaMode：远程API函数操作模式，此函数的推荐操作模式是 simx_opmode_blocking  
 - 返回值：
   - returnCode：远程API函数返回码
+
+
+
+### simxSetObjectOrientation 
+
+设置对象的方向（ 欧拉角 ）
+
+```python
+number returnCode=simxSetObjectOrientation(number clientID,number objectHandle,number relativeToObjectHandle,array eulerAngles,number operationMode) 
+```
+
+- 参数：
+  - clientID：客户端ID
+  - objectHandle：对象句柄
+  - relativeToObjectHandle：指示相对于我们想要的位置的参考框架。 指定 -1 检索绝对位置，sim_handle_parent 检索相对于对象父级的位置，或相对于您想要该位置的参考框架的对象句柄
+  - eulerAngles：欧拉角（α，β和γ） 
+  - operaMode：远程API函数操作模式，此函数的推荐操作模式是 simx_opmode_blocking  
+- 返回值：
+  - returnCode：远程API函数返回码

@@ -1747,7 +1747,7 @@ function removeDlg()
     end
 end
 
-function sysCall_init()
+if (sim_call_type==sim.customizationscriptcall_initialization) then
     MAX_VEL_DEFAULT_MOTOR=5
     MAX_ACCEL_DEFAULT_MOTOR=35
 
@@ -1880,7 +1880,7 @@ function sysCall_init()
 
     workspace=sim.getObjectHandle('Ragnar_workspace')
 
-	
+	sim.setScriptAttribute(sim.handle_self,sim.customizationscriptattribute_activeduringsimulation,true)
     updatePluginRepresentation()
     previousDlgPos,algoDlgSize,algoDlgPos,distributionDlgSize,distributionDlgPos,previousDlg1Pos=simBWF.readSessionPersistentObjectData(model,"dlgPosAndSize")
 end
@@ -1894,12 +1894,12 @@ showOrHideUiIfNeeded=function()
     end
 end
 
-function sysCall_nonSimulation()
+if (sim_call_type==sim.customizationscriptcall_nonsimulation) then
     showOrHideUiIfNeeded()
     updatePlotAndRagnarFromRealRagnarIfNeeded()
 end
 
-function sysCall_sensing()
+if (sim_call_type==sim.customizationscriptcall_simulationsensing) then
     if simJustStarted then
         updateEnabledDisabledItems()
     end
@@ -1907,11 +1907,11 @@ function sysCall_sensing()
     showOrHideUiIfNeeded()
 end
 
-function sysCall_suspend()
+if (sim_call_type==sim.customizationscriptcall_simulationpause) then
     showOrHideUiIfNeeded()
 end
 
-function sysCall_afterSimulation()
+if (sim_call_type==sim.customizationscriptcall_firstaftersimulation) then
     updateEnabledDisabledItems()
     local c=readInfo()
     if sim.boolAnd32(c['bitCoded'],256)==256 then
@@ -1921,7 +1921,7 @@ function sysCall_afterSimulation()
     end
 end
 
-function sysCall_beforeSimulation()
+if (sim_call_type==sim.customizationscriptcall_lastbeforesimulation) then
     disconnect()
     closePlot()
     simJustStarted=true
@@ -1934,18 +1934,18 @@ function sysCall_beforeSimulation()
     end
 end
 
-function sysCall_beforeInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_lastbeforeinstanceswitch) then
     disconnect()
     closePlot()
     removeDlg()
     removeFromPluginRepresentation()
 end
 
-function sysCall_afterInstanceSwitch()
+if (sim_call_type==sim.customizationscriptcall_firstafterinstanceswitch) then
     updatePluginRepresentation()
 end
 
-function sysCall_cleanup()
+if (sim_call_type==sim.customizationscriptcall_cleanup) then
     disconnect()
     closePlot()
     removeDlg()

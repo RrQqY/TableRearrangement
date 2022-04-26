@@ -36,37 +36,37 @@ public:
         axis[1].setInternalData(d+3);
         axis[2].setInternalData(d+6);
     }
-    inline simMathReal& operator() (size_t i,size_t j)
+    inline simMathReal& operator() (unsigned i,unsigned j)
     {
         return(axis[j](i));
     }
-    inline const simMathReal& operator() (size_t i,size_t j) const
+    inline const simMathReal& operator() (unsigned i,unsigned j) const
     {
         return(axis[j](i));
     }
     inline void clear()
     {
-        axis[0](0)=simZero;
-        axis[0](1)=simZero;
-        axis[0](2)=simZero;
-        axis[1](0)=simZero;
-        axis[1](1)=simZero;
-        axis[1](2)=simZero;
-        axis[2](0)=simZero;
-        axis[2](1)=simZero;
-        axis[2](2)=simZero;
+        axis[0](0)=0.0f;
+        axis[0](1)=0.0f;
+        axis[0](2)=0.0f;
+        axis[1](0)=0.0f;
+        axis[1](1)=0.0f;
+        axis[1](2)=0.0f;
+        axis[2](0)=0.0f;
+        axis[2](1)=0.0f;
+        axis[2](2)=0.0f;
     }
     inline void setIdentity()
     {
-        axis[0](0)=simOne;
-        axis[0](1)=simZero;
-        axis[0](2)=simZero;
-        axis[1](0)=simZero;
-        axis[1](1)=simOne;
-        axis[1](2)=simZero;
-        axis[2](0)=simZero;
-        axis[2](1)=simZero;
-        axis[2](2)=simOne;
+        axis[0](0)=1.0f;
+        axis[0](1)=0.0f;
+        axis[0](2)=0.0f;
+        axis[1](0)=0.0f;
+        axis[1](1)=1.0f;
+        axis[1](2)=0.0f;
+        axis[2](0)=0.0f;
+        axis[2](1)=0.0f;
+        axis[2](2)=1.0f;
     }
     inline void transpose()
     {
@@ -104,7 +104,7 @@ public:
     }
     inline void copyToInterface(simMathReal* m) const
     { // Temporary routine. Remove later!
-        for (size_t i=0;i<3;i++)
+        for (int i=0;i<3;i++)
         {
             m[3*i+0]=axis[0](i);
             m[3*i+1]=axis[1](i);
@@ -113,7 +113,7 @@ public:
     }
     inline void copyFromInterface(const simMathReal* m)
     { // Temporary routine. Remove later!
-        for (size_t i=0;i<3;i++)
+        for (int i=0;i<3;i++)
         {
             axis[0](i)=m[3*i+0];
             axis[1](i)=m[3*i+1];
