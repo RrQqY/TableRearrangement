@@ -1,4 +1,0 @@
-[31m[1mCMake Error[0m at /home/rrqq/TableRearrangement/ur_vrep/src/sim_ros_interface/CMakeLists.txt:35 (message):
-  Environment variable COPPELIASIM_ROOT_DIR is not set
-
-

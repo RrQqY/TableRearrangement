@@ -1,6 +1,0 @@
-devel_space: /home/rrqq/TableRearrangement/ur_vrep/devel
-install: false
-install_space: /home/rrqq/TableRearrangement/ur_vrep/install
-profile: default
-source_space: /home/rrqq/TableRearrangement/ur_vrep/src
-workspace: /home/rrqq/TableRearrangement/ur_vrep

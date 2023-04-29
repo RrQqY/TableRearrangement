@@ -1,8 +1,0 @@
-prefix=/home/rrqq/TableRearrangement/ur_ws/devel
-
-Name: ur_msgs
-Description: Description of ur_msgs
-Version: 1.2.7
-Cflags: -I/home/rrqq/TableRearrangement/ur_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: message_runtime std_msgs
